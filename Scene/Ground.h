@@ -19,10 +19,6 @@ public:
     void Draw();
     void Update(const double& deltaTime);
     void HandleKey(int key, int state, int x, int y);
-    
-private:
-    float xrot, yrot, zrot;
-    float scale;
 };
 
 

@@ -9,15 +9,17 @@ You may change the implementation of these functions to improve the quality of t
 #include "Camera.h"
 #include "VectorMaths.h"
 
+using namespace globalconf;
+
 Camera::Camera() : wKey(0), sKey(0), aKey(0), dKey(0), currentButton(0), mouseX(0), mouseY(0)
 {
 // CHANGE THE INITIALISATION HERE IF YOU WANT THE CAMERA TO START IN A DIFFERENT POSITION OR VIEW DIRECTION
     
     // float y = Enviornment::CAMERA.y;
     // set the camera position to start at (0,0,0)
-    eyePosition[0] = Enviornment::CM_X;
-    eyePosition[1] = Enviornment::CM_Y;
-    eyePosition[2] = Enviornment::CM_Z;
+    eyePosition[0] = CAMERA.pos.x;
+    eyePosition[1] = CAMERA.pos.y;
+    eyePosition[2] = CAMERA.pos.z;
     
     // set the view direction vector of the camera to be (0,0,-1)
     vd[0] = 0.0f;
@@ -117,7 +119,7 @@ void Camera::Update( const double& deltaTime )
     // 'jittery' feel to the camera.
     
     // variable to control how fast the camera moves in any one direction
-    float speed = Enviornment::CM_S;
+    float speed = CAMERA.speed;
     
     if( aKey )
     {

@@ -8,37 +8,40 @@
 
 #pragma once
 
-class Enviornment
-{
-
-private:
-    struct Camera {
+namespace datastruct {
+    // struct
+    struct Position {
         float x;
         float y;
         float z;
+    };
+    
+    struct Vertice {
+        float x;
+        float z;
+        Vertice* next;
+    };
+    
+    struct CameraConf {
+        Position pos;
         float speed;
     };
-    constexpr static Camera CAMERA = { 0.f, 5.f, -1500.f, 2.f };
     
     struct Env {
         int cell_size;
         int width;
         int depth;
     };
-    constexpr static Env ENV = { 1, 2000, 4000 };
-    
+}
 
-public:
-    // global config
-    constexpr static float CM_X = CAMERA.x;
-    constexpr static float CM_Y = CAMERA.y;
-    constexpr static float CM_Z = CAMERA.z;
-    constexpr static float CM_S = CAMERA.speed;
-    constexpr static float ENV_WIDTH = ENV.width;
-    constexpr static float ENV_DEPTH = ENV.depth;
-    constexpr static float CELL_SIZE = ENV.cell_size;
+// global config
+namespace globalconf {
+    using namespace datastruct;
+    
+    constexpr CameraConf CAMERA = { { 0.f, 50.f, -500.f }, 10.f };
+    constexpr Env ENV = { 1, 2000, 2000 };
     
     // stair
-    constexpr static int ST_HEIGHT_PL = 30;
-};
+    constexpr int ST_HEIGHT_PL = 20;
+}
 

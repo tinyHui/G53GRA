@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Environment.h"
 #include "Object.h"
 
 class Stair : public Object
@@ -22,18 +23,12 @@ public:
     
 private:
     struct StairConf {
+        datastruct::Vertice* v;
+        datastruct::Position pos;
+        int diff;
         int level;
-        int x;
-        int z;
-        int width;
-        int depth;
-        int diff_w;
-        int diff_d;
     };
     
-    float xrot, yrot, zrot;
-    float scale;
-    
-    void buildStair(StairConf stair);
+    void buildStairBase(StairConf stair);
 };
 

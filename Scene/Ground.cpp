@@ -10,8 +10,9 @@
 #include "Ground.h"
 #include "Block.h"
 
+using namespace globalconf;
 
-Ground::Ground() : xrot(0.0f), yrot(0.0f), zrot(0.0f), scale(1)
+Ground::Ground()
 {
 }
 
@@ -21,12 +22,9 @@ Ground::~Ground()
 
 void Ground::Draw()
 {
-    int width = Enviornment::ENV_WIDTH;
-    int depth = Enviornment::ENV_DEPTH;
-    
     glColor3f(0.f, 0.f, 0.f);
     
-    Block::create(0, 0, 0, width, 0, depth);
+    Block::createSquare({ 0, 0, 0 }, ENV.width, 0, ENV.depth);
     
     // reset
     glColor3f(0.f, 0.f, 0.f);

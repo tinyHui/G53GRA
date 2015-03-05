@@ -10,7 +10,10 @@
 #include "Stair.h"
 #include "Block.h"
 
-Stair::Stair() : xrot(0.0f), yrot(0.0f), zrot(0.0f), scale(1)
+using namespace datastruct;
+using namespace globalconf;
+
+Stair::Stair()
 {
 }
 
@@ -21,29 +24,47 @@ Stair::~Stair()
 void Stair::Draw()
 {
     // main stair config
+    Vertice v1 = { -200, 200, nullptr };
+    Vertice v2 = { -200, -180, &v1 };
+    Vertice v3 = { -170, -180, &v2 };
+    Vertice v4 = { -170, -240, &v3 };
+    Vertice v5 = { 170, -240, &v4 };
+    Vertice v6 = { 170, -180, &v5 };
+    Vertice v7 = { 200, -180, &v6 };
+    Vertice v9 = { 200, 200, &v7 };
+    
     StairConf main_stair;
     main_stair.level = 3;
-    main_stair.x = 0;
-    main_stair.z = 100;
-    main_stair.width = 600;
-    main_stair.depth = 600;
-    main_stair.diff_w = 100;
-    main_stair.diff_d = 100;
+    main_stair.diff = 30;
+    main_stair.v = &v9;
+    main_stair.pos = { 0, 0, 100 };
     
     glColor3f(0.f, 0.f, 0.f);
     
     // build main stair
-    buildStair(main_stair);
+    buildStairBase(main_stair);
 }
 
-void Stair::buildStair(StairConf stair)
+void Stair::buildStairBase(StairConf stair)
 {
+    glColor3b(255, 0, 0);
     for (int l = 0; l < stair.level; l++) {
-        int y = Enviornment::ST_HEIGHT_PL / 2 + l * Enviornment::ST_HEIGHT_PL;
-        int w = stair.width - l * stair.diff_w;
-        int d = stair.depth - l * stair.diff_d;
-        
-        Block::create(stair.x, y, stair.z, w, Enviornment::ST_HEIGHT_PL, d);
+        Vertice* current_v = stair.v;
+        while (current_v != nullptr) {
+            if (current_v->x < 0) {
+                current_v->x += stair.diff;
+            } else if (current_v->x > 0) {
+                current_v->x -= stair.diff;
+            }
+            if (current_v->z < 0) {
+                current_v->z += stair.diff;
+            } else if (current_v->z > 0) {
+                current_v->z -= stair.diff;
+            }
+            current_v = current_v->next;
+        }
+        stair.pos.y += ST_HEIGHT_PL;
+        Block::createPrism(stair.v, stair.pos, ST_HEIGHT_PL);
     }
 }
 

@@ -8,18 +8,17 @@
 
 #pragma once
 
+#include "Environment.h"
+
 class Block
 {
-    
 public:
     Block();
     ~Block();
     
-    static void create(float x, float y, float z, float w, float h, float d);
-    static void createCube(float x, float y, float z);
-    
-private:
-    float size;
+    static void createPrism(datastruct::Vertice* v, datastruct::Position p, float h);
+    static void createSquare(datastruct::Position p, float w, float h, float d);
+    static void createCube(datastruct::Position p);
     
 };
 
