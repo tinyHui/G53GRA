@@ -13,7 +13,6 @@ class MyScene : public Scene
 {
 
 public:
-
 	// Constructor is called when the program starts
     MyScene( int argc, char **argv, const char *title, const int windowWidth, const int windowHeight );
 	// Destructor is called when the program ends

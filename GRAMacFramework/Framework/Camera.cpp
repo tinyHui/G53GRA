@@ -4,29 +4,30 @@ This is the camera class that controlls the position, view direction and project
 You may change the implementation of these functions to improve the quality of the camera
 */
 
+#include "Environment.h"
 #include "Scene.h"
 #include "Camera.h"
 #include "VectorMaths.h"
 
 Camera::Camera() : wKey(0), sKey(0), aKey(0), dKey(0), currentButton(0), mouseX(0), mouseY(0)
 {
-    
 // CHANGE THE INITIALISATION HERE IF YOU WANT THE CAMERA TO START IN A DIFFERENT POSITION OR VIEW DIRECTION
     
+    // float y = Enviornment::CAMERA.y;
     // set the camera position to start at (0,0,0)
-    eyePosition[0] = 0.0f;
-    eyePosition[1] = 0.0f;
-    eyePosition[2] = 0.0f;
+    eyePosition[0] = Enviornment::CM_X;
+    eyePosition[1] = Enviornment::CM_Y;
+    eyePosition[2] = Enviornment::CM_Z;
     
     // set the view direction vector of the camera to be (0,0,-1)
     vd[0] = 0.0f;
     vd[1] = 0.0f;
-    vd[2] = -1.0f;
+    vd[2] = 1.0f;
     
-    // set the planar forward direction vector of the camera to be (0,0,-1)
+    // set the planar forward direction vector of the camera to be (0,0,1)
     forward[0] = 0.0f;
     forward[1] = 0.0f;
-    forward[2] = -1.0f;
+    forward[2] = 1.0f;
     
     // set the right vector to point along the x axis
     right[0] = 1.0f;
@@ -116,7 +117,7 @@ void Camera::Update( const double& deltaTime )
     // 'jittery' feel to the camera.
     
     // variable to control how fast the camera moves in any one direction
-    float speed = 2.0f;
+    float speed = Enviornment::CM_S;
     
     if( aKey )
     {
@@ -136,6 +137,16 @@ void Camera::Update( const double& deltaTime )
     if( sKey )
     {
         sub(eyePosition, forward, speed);
+    }
+    
+    if ( eKey )
+    {
+        add(eyePosition, up, speed);
+    }
+    
+    if ( qKey )
+    {
+        sub(eyePosition, up, speed);
     }
     
 }
@@ -162,6 +173,14 @@ void Camera::HandleKey( int key, int state, int x, int y )
         case 's':
             sKey = state;
             break;
+        case 'E':
+        case 'e':
+            eKey = state;
+            break;
+        case 'Q':
+        case 'q':
+            qKey = state;
+            break;
         default:
             break;
     }
@@ -169,7 +188,7 @@ void Camera::HandleKey( int key, int state, int x, int y )
 
 void Camera::HandleMouseClick( int button, int state, int x, int y )
 {
-    // when the mouse is clicked remember which button was pressed and where it was pressed
+//    // when the mouse is clicked remember which button was pressed and where it was pressed
     currentButton = button;
     mouseX = x;
     mouseY = y;
