@@ -17,6 +17,7 @@ public:
     ~Block();
     
     static void createPrism(datastruct::Vertice* v, datastruct::Position p, float h);
+    static void createTruncated(datastruct::Vertice* bv, datastruct::Vertice*tv, datastruct::Position p, float h);
     static void createSquare(datastruct::Position p, float w, float h, float d);
     static void createCube(datastruct::Position p);
     

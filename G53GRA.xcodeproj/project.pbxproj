@@ -17,6 +17,7 @@
 		7E4709BC1A9B6FDA00E7C86B /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4709B41A9B6FDA00E7C86B /* Triangle.cpp */; };
 		7E4C12881AA529FC00429113 /* Stair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C12861AA529FC00429113 /* Stair.cpp */; };
 		7E4C128B1AA5BD7E00429113 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C12891AA5BD7E00429113 /* Block.cpp */; };
+		7E87278E1AA922680048846C /* House.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E87278C1AA922680048846C /* House.cpp */; };
 		FFB641411A812B3800739C9C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB641401A812B3800739C9C /* OpenGL.framework */; };
 		FFB641431A812B3D00739C9C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB641421A812B3D00739C9C /* GLUT.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,8 @@
 		7E4C12871AA529FC00429113 /* Stair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stair.h; sourceTree = "<group>"; };
 		7E4C12891AA5BD7E00429113 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
 		7E4C128A1AA5BD7E00429113 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		7E87278C1AA922680048846C /* House.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = House.cpp; sourceTree = "<group>"; };
+		7E87278D1AA922680048846C /* House.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = House.h; sourceTree = "<group>"; };
 		FFB641361A812B2E00739C9C /* G53GRA */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = G53GRA; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFB641401A812B3800739C9C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		FFB641421A812B3D00739C9C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -112,27 +115,37 @@
 		7E4709B11A9B6FDA00E7C86B /* ChinesePalace */ = {
 			isa = PBXGroup;
 			children = (
-				7E4C128C1AA5BE6F00429113 /* basic */,
+				7E4E05261AADED9F003B6A2D /* constructor */,
+				7E4C128C1AA5BE6F00429113 /* shape */,
 				7E4709B21A9B6FDA00E7C86B /* MyScene.cpp */,
 				7E4709B31A9B6FDA00E7C86B /* MyScene.h */,
 				7E4709B41A9B6FDA00E7C86B /* Triangle.cpp */,
 				7E4709B51A9B6FDA00E7C86B /* Triangle.h */,
 				7E35BAAA1A9B81420090C1F5 /* Ground.cpp */,
 				7E35BAAB1A9B81420090C1F5 /* Ground.h */,
-				7E4C12861AA529FC00429113 /* Stair.cpp */,
-				7E4C12871AA529FC00429113 /* Stair.h */,
 			);
 			name = ChinesePalace;
 			path = Scene;
 			sourceTree = "<group>";
 		};
-		7E4C128C1AA5BE6F00429113 /* basic */ = {
+		7E4C128C1AA5BE6F00429113 /* shape */ = {
 			isa = PBXGroup;
 			children = (
 				7E4C12891AA5BD7E00429113 /* Block.cpp */,
 				7E4C128A1AA5BD7E00429113 /* Block.h */,
 			);
-			name = basic;
+			name = shape;
+			sourceTree = "<group>";
+		};
+		7E4E05261AADED9F003B6A2D /* constructor */ = {
+			isa = PBXGroup;
+			children = (
+				7E87278C1AA922680048846C /* House.cpp */,
+				7E87278D1AA922680048846C /* House.h */,
+				7E4C12861AA529FC00429113 /* Stair.cpp */,
+				7E4C12871AA529FC00429113 /* Stair.h */,
+			);
+			name = constructor;
 			sourceTree = "<group>";
 		};
 		FFB6412D1A812B2E00739C9C = {
@@ -217,6 +230,7 @@
 				7E4709B61A9B6FDA00E7C86B /* Camera.cpp in Sources */,
 				7E4709BB1A9B6FDA00E7C86B /* MyScene.cpp in Sources */,
 				7E4709B91A9B6FDA00E7C86B /* StaticEngine.cpp in Sources */,
+				7E87278E1AA922680048846C /* House.cpp in Sources */,
 				7E35BAAC1A9B81420090C1F5 /* Ground.cpp in Sources */,
 				7E4C12881AA529FC00429113 /* Stair.cpp in Sources */,
 				7E4C128B1AA5BD7E00429113 /* Block.cpp in Sources */,

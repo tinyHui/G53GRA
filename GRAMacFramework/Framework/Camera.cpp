@@ -94,7 +94,7 @@ void Camera::SetUpCamera()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     //glOrtho(-windowWidth/2, windowWidth/2, -windowHeight/2, windowHeight/2, 1.0, 1000.0);
-    gluPerspective(60.0, windowWidth/windowHeight, 1, 1000.0);
+    gluPerspective(60.0, windowWidth/windowHeight, 1, CAMERA.far_clipping_plane);
 
     // clear the old model view matrix and replace it with one that only contains the world to view space transform
     glMatrixMode(GL_MODELVIEW);

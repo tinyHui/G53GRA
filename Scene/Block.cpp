@@ -30,6 +30,7 @@ Block::~Block()
 {
 }
 
+
 void Block::createPrism(Vertice* v, Position p, float h)
 {
     float size = ENV.cell_size;
@@ -45,6 +46,15 @@ void Block::createPrism(Vertice* v, Position p, float h)
     float btm_y = - h / 2.;
     Vertice* current_v = v;
     
+    // update size
+    while (current_v != nullptr) {
+        glVertex3d(current_v->x, top_y, current_v->z);
+        current_v->x *= size;
+        current_v->z *= size;
+        current_v = current_v->next;
+        vertice_num++;
+    }
+    
     glPushMatrix();
 
     // top
@@ -52,7 +62,6 @@ void Block::createPrism(Vertice* v, Position p, float h)
     while (current_v != nullptr) {
         glVertex3d(current_v->x, top_y, current_v->z);
         current_v = current_v->next;
-        vertice_num++;
     }
     glEnd();
     
@@ -87,6 +96,13 @@ void Block::createPrism(Vertice* v, Position p, float h)
     
     glTranslatef(-x, -y, -z);
 }
+
+
+void Block::createTruncated(Vertice* bv, datastruct::Vertice *tv, datastruct::Position p, float h)
+{
+    
+}
+
 
 void Block::createSquare(Position p, float w, float h, float d)
 {
@@ -156,6 +172,7 @@ void Block::createSquare(Position p, float w, float h, float d)
     glTranslatef(-x, -y, -z);
     
 }
+
 
 void Block::createCube(Position p)
 {
