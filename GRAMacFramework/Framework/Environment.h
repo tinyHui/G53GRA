@@ -9,60 +9,77 @@
 #pragma once
 
 namespace datastruct {
-    // struct
-    struct Position {
-        float x;
-        float y;
-        float z;
-    };
-    
-    struct Vertice {
-        Vertice( float x, float z, Vertice* next ) : x(x), z(z), next(next) {}
-        float x;
-        float z;
-        Vertice* next;
-    };
-    
-    struct CameraConf {
-        Position pos;
-        float speed;
-        float far_clipping_plane;
-    };
-    
+    // basic struct
     struct Env {
-        int cell_size;
         int width;
         int depth;
     };
     
-    struct StairConfig {
+    struct Color {
+        float r = 0;
+        float g = 0;
+        float b = 0;
+    };
+    
+    struct Position {
+        float x;
+        float y = 0;
+        float z;
+        float x_angel = 0;
+        float y_angel = 0;
+        float z_angel = 0;
+    };
+    
+    struct Vertice {
+        Vertice( float x, float y, float z, Vertice* next ) : x(x), y(y), z(z), next(next) {}
+        float x;
+        float y;
+        float z;
+        Vertice* next;
+    };
+    
+    struct SquareConfig {
         float width;
-        float deepth;
-        int level;
-        float diff;
-        Position base_pos;
-        Vertice* v;
-    };
-    
-    struct HouseConfig {
-        float top_body_width;
-        float top_body_deepth;
-        float top_body_height;
-        float btm_body_width;
-        float btm_body_deepth;
-        float btm_body_height;
-        Position base_pos;
+        float height;
+        float depth;
+        Color color;
     };
 }
 
-// global config
-namespace globalconf {
+namespace camera {
     using namespace datastruct;
-    
-    constexpr CameraConf CAMERA = { { 0.f, 100.f, -500.f }, 5.f, 1000.f };
-    constexpr Env ENV = { 1, 300, 300 };
-    
-    // stair
-    constexpr int ST_HEIGHT_PL = 30;
+    struct Config {
+        float x;
+        float y;
+        float z;
+        float x_angel;
+        float y_angel;
+        float z_angel;
+        float speed;
+        float far_clipping_plane;
+    };
+    constexpr Config CAMERA = { 0.f, 10.f, 0.f, 20.f, 0.f, 0.f, 1.f, 1000.f };
 }
 
+namespace wall {
+    using namespace datastruct;
+    struct Config {
+        Position pos;
+        float width;
+        float height;
+        float depth = 2.f;
+    };
+}
+
+namespace chair {
+    using namespace datastruct;
+    struct Config {
+        float width = 3;
+        float sit_thick = 0.2;
+        float sit_depth = 4;
+        float back_thick = 0.2;
+        float back_height = 5;
+        float leg_thick = 0.2;
+        float leg_height = 4;
+    };
+}

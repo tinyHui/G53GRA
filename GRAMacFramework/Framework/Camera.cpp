@@ -9,7 +9,7 @@ You may change the implementation of these functions to improve the quality of t
 #include "Camera.h"
 #include "VectorMaths.h"
 
-using namespace globalconf;
+using namespace camera;
 
 Camera::Camera() : wKey(0), sKey(0), aKey(0), dKey(0), currentButton(0), mouseX(0), mouseY(0)
 {
@@ -17,19 +17,19 @@ Camera::Camera() : wKey(0), sKey(0), aKey(0), dKey(0), currentButton(0), mouseX(
     
     // float y = Enviornment::CAMERA.y;
     // set the camera position to start at (0,0,0)
-    eyePosition[0] = CAMERA.pos.x;
-    eyePosition[1] = CAMERA.pos.y;
-    eyePosition[2] = CAMERA.pos.z;
+    eyePosition[0] = CAMERA.x;
+    eyePosition[1] = CAMERA.y;
+    eyePosition[2] = CAMERA.z;
     
     // set the view direction vector of the camera to be (0,0,-1)
     vd[0] = 0.0f;
     vd[1] = 0.0f;
-    vd[2] = 1.0f;
+    vd[2] = -1.0f;
     
-    // set the planar forward direction vector of the camera to be (0,0,1)
+    // set the planar forward direction vector of the camera to be (0,0,-1)
     forward[0] = 0.0f;
     forward[1] = 0.0f;
-    forward[2] = 1.0f;
+    forward[2] = -1.0f;
     
     // set the right vector to point along the x axis
     right[0] = 1.0f;
@@ -100,6 +100,10 @@ void Camera::SetUpCamera()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(eyePosition[0], eyePosition[1], eyePosition[2], eyePosition[0]+vd[0], eyePosition[1]+vd[1], eyePosition[2]+vd[2], up[0], up[1], up[2]);
+    // incline camera
+    glRotatef(CAMERA.x_angel, 1, 0, 0);
+    glRotatef(CAMERA.y_angel, 0, 1, 0);
+    glRotatef(CAMERA.z_angel, 0, 0, 1);
 }
 
 void Camera::SetViewport( const int& width, const int& height )
