@@ -43,8 +43,8 @@ void Chair::Draw()
     back_config->color = *main_color;
     Position* back_pos = new Position();
     back_pos->x = 0;
-    back_pos->y = sit_pos->y + chair->back_height / 2. + chair->sit_thick / 2.;
-    back_pos->z = - chair->sit_depth / 2. - chair->back_thick / 2.;
+    back_pos->y = sit_pos->y + chair->back_height / 2. + chair->sit_thick / 2. - 0.1;
+    back_pos->z = - chair->sit_depth / 2. - chair->back_thick / 2. - 0.15;
     back_pos->x_angel = 80.;
     
     // leg
@@ -57,25 +57,25 @@ void Chair::Draw()
     Position* lt_leg_pos = new Position();
     lt_leg_pos->x = - chair->width / 2. + chair->leg_thick / 2.;
     lt_leg_pos->y = chair->leg_height / 2.;
-    lt_leg_pos->z = - chair->sit_depth / 2.;
+    lt_leg_pos->z = - chair->sit_depth / 2. + chair->leg_thick / 2;
     
     //right top leg
     Position* rt_leg_pos = new Position();
     rt_leg_pos->x = chair->width / 2. - chair->leg_thick / 2.;
     rt_leg_pos->y = chair->leg_height / 2.;
-    rt_leg_pos->z = - chair->sit_depth / 2.;
+    rt_leg_pos->z = - chair->sit_depth / 2. + chair->leg_thick / 2;
     
     //left bottom leg
     Position* lb_leg_pos = new Position();
     lb_leg_pos->x = - chair->width / 2. + chair->leg_thick / 2.;
     lb_leg_pos->y = chair->leg_height / 2.;
-    lb_leg_pos->z = chair->sit_depth / 2.;
+    lb_leg_pos->z = chair->sit_depth / 2. - chair->leg_thick / 2;
     
     //right bottom leg
     Position* rb_leg_pos = new Position();
     rb_leg_pos->x = chair->width / 2. - chair->leg_thick / 2.;
     rb_leg_pos->y = chair->leg_height / 2.;
-    rb_leg_pos->z = chair->sit_depth / 2.;
+    rb_leg_pos->z = chair->sit_depth / 2. - chair->leg_thick / 2;
     
     // Draw
     glPushMatrix();

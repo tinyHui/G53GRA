@@ -1,17 +1,19 @@
 
 /*
-This is the class you will use to add objects to your scene.
-First create a new class for the object that you want to draw.
-Then make your new class inherit the 'Object' class.
-This way your new class will be able to override all the functions that an object may want to do.
-If you want to draw the new object you have created then you will need to override the Draw() function.
-If you want to update the object every frame you need to override the Update( const double& deltaTime ) function.
-If you want your object to recieve keyboard or mouse commands then override the Handle...() functions.
-Once you have done this you can add your new object to the scene with AddObjectToScene() in the Init function of MyScene.
-*/
+ This is the class you will use to add objects to your scene.
+ First create a new class for the object that you want to draw.
+ Then make your new class inherit the 'Object' class.
+ This way your new class will be able to override all the functions that an object may want to do.
+ If you want to draw the new object you have created then you will need to override the Draw() function.
+ If you want to update the object every frame you need to override the Update( const double& deltaTime ) function.
+ If you want your object to recieve keyboard or mouse commands then override the Handle...() functions.
+ Once you have done this you can add your new object to the scene with AddObjectToScene() in the Init function of MyScene.
+ */
 
 #pragma once
 
+#include <stdlib.h>
+#include <cmath>
 #include "Scene.h"
 #include "Environment.h"
 
@@ -35,86 +37,83 @@ public:
     virtual void HandleMouseMotion( int x, int y ){}
     // Called every time the mouse moves, x and y are the mouse position.
     virtual void HandlePassiveMouseMotion( int x, int y ){}
-
+    
     void createSquare(datastruct::SquareConfig* config, datastruct::Position* pos)
     {
         using namespace datastruct;
-        float half_width = config->width / 2.;
-        float half_depth = config->depth / 2.;
-        float half_height = config->height / 2.;
-        
-        Vertice* v1 = new Vertice(- half_width, half_height, half_depth, nullptr );
-        Vertice* v2 = new Vertice(half_width, half_height, half_depth, v1 );
-        Vertice* v3 = new Vertice(half_width, half_height, -half_depth, v2 );
-        Vertice* v4 = new Vertice(- half_width, half_height, -half_depth, v3 );
-        
-        Vertice* v5 = new Vertice(- half_width, -half_height, half_depth, nullptr );
-        Vertice* v6 = new Vertice(half_width, -half_height, half_depth, v5 );
-        Vertice* v7 = new Vertice(half_width, -half_height, -half_depth, v6 );
-        Vertice* v8 = new Vertice(- half_width, -half_height, -half_depth, v7 );
-        
-        createTruncated(v8, v4, pos);
+        glTranslatef(pos->x, pos->y, pos->z);
+        glRotated(pos->x_angel, 1., 0, 0);
+        glRotated(pos->y_angel, 0, 1., 0);
+        glRotated(pos->z_angel, 0, 0, 1.);
+        glPushMatrix();
+        glScalef(config->width, config->height, config->depth);
+        glutSolidCube(1.f);
+        glPopMatrix();
+        glRotated(-pos->z_angel, 0, 0, 1.);
+        glRotated(-pos->y_angel, 0, 1., 0);
+        glRotated(-pos->x_angel, 1., 0, 0);
+        glTranslatef(-pos->x, -pos->y, -pos->z);
     }
     
-    
-    void createTruncated(datastruct::Vertice* bv, datastruct::Vertice *tv, datastruct::Position* pos)
+    void createCylinder(datastruct::CylinderConfig* config, datastruct::Position* pos)
     {
         using namespace datastruct;
-//        glColor3f(color.r, color.g, color.b);
-        
-        int vertice_num = 0;
-        
+        GLUquadricObj* quadratic = gluNewQuadric();;
         glTranslatef(pos->x, pos->y, pos->z);
-        glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
-        glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
-        glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
+        glRotated(pos->x_angel, 1., 0, 0);
+        glRotated(pos->y_angel, 0, 1., 0);
+        glRotated(pos->z_angel, 0, 0, 1.);
+        glRotated(90, 1, 0, 0);
         
+        glPushMatrix();
+        glScaled(config->x_zoom, config->y_zoom, config->z_zoom);
+        
+        glTranslatef(0, 0, -config->height / 2);
+        gluCylinder(quadratic, config->bottom_r, config->top_r, config->height, 50, 50);
+        glTranslatef(0, 0, config->height / 2);
+        
+        // draw a solid unit cylinder
+        float res = 0.01f * M_PI;                // resolution (in radians: equivalent to 18 degrees)
+        float r = config->top_r;
+        float x = r, z = 0.f;                   // initialise x and z on right of cylinder centre
+        float t = 0.f;                          // initialise angle as 0
         // top
-        Vertice* draw_tv = tv;
-        glBegin(GL_LINE_LOOP);
-        while (draw_tv != nullptr) {
-            glVertex3d(draw_tv->x, draw_tv->y, draw_tv->z);
-            draw_tv = draw_tv->next;
-            vertice_num++;
-        }
+        glTranslatef(0, 0, config->height / 2);
+        glRotated(-90, 1., 0, 0);
+        glBegin(GL_POLYGON);
+        do{
+            glVertex3f(x, 0.f, z);    // top
+            t += res;               // add increment to angle
+            x = r * cos(t);           // move x and z around circle
+            z = r * sin(t);
+        } while (t <= 2 * M_PI);
         glEnd();
-        
+        glRotated(90., 1., 0, 0);
+        glTranslatef(0, 0, -config->height / 2);
+
         // bottom
-        Vertice* draw_bv = bv;
-        glBegin(GL_LINE_LOOP);
-        while (draw_bv != nullptr) {
-            glVertex3d(draw_bv->x, draw_bv->y, draw_bv->z);
-            draw_bv = draw_bv->next;
-        }
+        r = config->bottom_r;
+        x = r, z = 0.f;
+        t = 0.f;
+        glTranslatef(0, 0, -config->height / 2);
+        glRotated(90, 1., 0, 0);
+        glBegin(GL_POLYGON);
+        do{
+            glVertex3f(x, 0.f, z);    // top
+            t += res;               // add increment to angle
+            x = r * cos(t);           // move x and z around circle
+            z = r * sin(t);
+        } while (t <= 2 * M_PI);
         glEnd();
+        glRotated(-90, 1., 0, 0);
         
-        // side
-        Vertice* draw_v1 = tv;
-        Vertice* draw_v2 = draw_v1->next;
-        Vertice* draw_v4 = bv;
-        Vertice* draw_v3 = draw_v4->next;
-        for (int i = 0; i < vertice_num; i++) {
-            glBegin(GL_LINE_LOOP);
-            glVertex3d(draw_v1->x, draw_v1->y, draw_v1->z);
-            glVertex3d(draw_v2->x, draw_v2->y, draw_v2->z);
-            glVertex3d(draw_v3->x, draw_v3->y, draw_v3->z);
-            glVertex3d(draw_v4->x, draw_v4->y, draw_v4->z);
-            glEnd();
-            
-            draw_v1 = draw_v2;
-            draw_v4 = draw_v3;
-            if (i < vertice_num - 2) {
-                draw_v2 = draw_v1->next;
-                draw_v3 = draw_v4->next;
-            } else {
-                draw_v2 = tv;
-                draw_v3 = bv;
-            }
-        }
+        glTranslatef(0, 0, config->height / 2);
+        glPopMatrix();
         
-        glRotatef(-pos->z_angel, 0.f, 0.f, 1.f);
-        glRotatef(-pos->y_angel, 0.f, 1.f, 0.f);
-        glRotatef(-pos->x_angel, 1.f, 0.f, 0.f);
+        glRotated(-90, 1, 0, 0);
+        glRotated(-pos->z_angel, 0, 0, 1.);
+        glRotated(-pos->y_angel, 0, 1., 0);
+        glRotated(-pos->x_angel, 1., 0, 0);
         glTranslatef(-pos->x, -pos->y, -pos->z);
     }
 };

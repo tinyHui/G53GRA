@@ -10,9 +10,9 @@
 
 Light::Light()
 {
-    position[0] = 0.0;
-    position[1] = 0.0;
-    position[2] = -20.0;
+    position[0] = 10.0;
+    position[1] = 30.0;
+    position[2] = 10.0;
     
     ambient[0] = 0.15;  // Set ambient colour of the light
     ambient[1] = 0.15;
@@ -33,14 +33,17 @@ Light::Light()
 
 void Light::Draw()
 {
-    glEnable(GL_LIGHTING);
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
-    glLightfv(GL_LIGHT0, GL_POSITION, position);
+
 }
 
 
 void Light::Update( const double& deltatime )
 {
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    
+    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, position);
 }

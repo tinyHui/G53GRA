@@ -99,11 +99,12 @@ void Camera::SetUpCamera()
     // clear the old model view matrix and replace it with one that only contains the world to view space transform
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(eyePosition[0], eyePosition[1], eyePosition[2], eyePosition[0]+vd[0], eyePosition[1]+vd[1], eyePosition[2]+vd[2], up[0], up[1], up[2]);
     // incline camera
     glRotatef(CAMERA.x_angel, 1, 0, 0);
     glRotatef(CAMERA.y_angel, 0, 1, 0);
     glRotatef(CAMERA.z_angel, 0, 0, 1);
+    
+    gluLookAt(eyePosition[0], eyePosition[1], eyePosition[2], eyePosition[0]+vd[0], eyePosition[1]+vd[1], eyePosition[2]+vd[2], up[0], up[1], up[2]);
 }
 
 void Camera::SetViewport( const int& width, const int& height )
