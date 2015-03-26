@@ -47,9 +47,21 @@ namespace datastruct {
         Color color;
     };
     
-    struct BlockConfig {
+    struct CellConfig {
         float width;
         float height;
+        float depth;
+        bool have_front = true;
+        bool have_back = true;
+        bool have_left = true;
+        bool have_right = true;
+        bool have_top = true;
+        bool have_bottom = true;
+        Color color;
+    };
+    
+    struct SquareShelf {
+        float width;
         float depth;
     };
 }
@@ -66,8 +78,8 @@ namespace camera {
         float speed;
         float far_clipping_plane;
     };
-//    constexpr Config CAMERA = { 0.f, 20.f, 35.f, 20.f, 0.f, 0.f, 0.3f, 1000.f };
-    constexpr Config CAMERA = { 0.f, 80.f, 0.f, 90.f, 0.f, 0.f, 1.f, 500.f };
+//    constexpr Config CAMERA = { 0.f, 80.f, 0.f, 90.f, 0.f, 0.f, 0.3f, 1000.f };
+    constexpr Config CAMERA = { 0.f, 10.f, 15.f, 10.f, 0.f, 0.f, 1.f, 500.f };
 }
 
 namespace chair {
@@ -97,6 +109,11 @@ namespace table {
 }
 
 namespace room {
+    using namespace datastruct;
+    constexpr float WALL_THICK = 0.2;
+}
+
+namespace wall_shelf {
     using namespace datastruct;
     constexpr float THICK = 0.2;
 }

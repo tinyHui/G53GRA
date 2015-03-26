@@ -14,8 +14,9 @@
 		7E4709BA1A9B6FDA00E7C86B /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4709AD1A9B6FDA00E7C86B /* Texture.cpp */; };
 		7E4709BB1A9B6FDA00E7C86B /* MyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4709B21A9B6FDA00E7C86B /* MyScene.cpp */; };
 		7E91DE8D1AB7488500DB73FA /* Chair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E91DE881AB7488500DB73FA /* Chair.cpp */; };
+		7E9684921AC2DC2A00C0D5C7 /* WallShelf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E9684901AC2DC2A00C0D5C7 /* WallShelf.cpp */; };
 		7E9BDFED1AB79E870095DA71 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E9BDFEB1AB79E870095DA71 /* Light.cpp */; };
-		7E9FF1451AC0CC7800EB780E /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FF1431AC0CC7800EB780E /* Room.cpp */; };
+		7E9FF1451AC0CC7800EB780E /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FF1431AC0CC7800EB780E /* Cell.cpp */; };
 		7EE967471AC07C5400508E80 /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EE967451AC07C5400508E80 /* Table.cpp */; };
 		FFB641411A812B3800739C9C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB641401A812B3800739C9C /* OpenGL.framework */; };
 		FFB641431A812B3D00739C9C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB641421A812B3D00739C9C /* GLUT.framework */; };
@@ -50,10 +51,12 @@
 		7E4C12851AA5273100429113 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		7E91DE881AB7488500DB73FA /* Chair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chair.cpp; sourceTree = "<group>"; };
 		7E91DE891AB7488500DB73FA /* Chair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chair.h; sourceTree = "<group>"; };
+		7E9684901AC2DC2A00C0D5C7 /* WallShelf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WallShelf.cpp; sourceTree = "<group>"; };
+		7E9684911AC2DC2A00C0D5C7 /* WallShelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallShelf.h; sourceTree = "<group>"; };
 		7E9BDFEB1AB79E870095DA71 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = GRAMacFramework/Framework/Light.cpp; sourceTree = SOURCE_ROOT; };
 		7E9BDFEC1AB79E870095DA71 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Light.h; path = GRAMacFramework/Framework/Light.h; sourceTree = SOURCE_ROOT; };
-		7E9FF1431AC0CC7800EB780E /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Room.cpp; sourceTree = "<group>"; };
-		7E9FF1441AC0CC7800EB780E /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		7E9FF1431AC0CC7800EB780E /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
+		7E9FF1441AC0CC7800EB780E /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		7EE967451AC07C5400508E80 /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		7EE967461AC07C5400508E80 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
 		FFB641361A812B2E00739C9C /* G53GRA */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = G53GRA; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,8 +132,10 @@
 				7E91DE891AB7488500DB73FA /* Chair.h */,
 				7EE967451AC07C5400508E80 /* Table.cpp */,
 				7EE967461AC07C5400508E80 /* Table.h */,
-				7E9FF1431AC0CC7800EB780E /* Room.cpp */,
-				7E9FF1441AC0CC7800EB780E /* Room.h */,
+				7E9FF1431AC0CC7800EB780E /* Cell.cpp */,
+				7E9FF1441AC0CC7800EB780E /* Cell.h */,
+				7E9684901AC2DC2A00C0D5C7 /* WallShelf.cpp */,
+				7E9684911AC2DC2A00C0D5C7 /* WallShelf.h */,
 			);
 			name = constructor;
 			sourceTree = "<group>";
@@ -214,10 +219,11 @@
 				7E4709BA1A9B6FDA00E7C86B /* Texture.cpp in Sources */,
 				7E91DE8D1AB7488500DB73FA /* Chair.cpp in Sources */,
 				7E4709B81A9B6FDA00E7C86B /* Scene.cpp in Sources */,
-				7E9FF1451AC0CC7800EB780E /* Room.cpp in Sources */,
+				7E9FF1451AC0CC7800EB780E /* Cell.cpp in Sources */,
 				7EE967471AC07C5400508E80 /* Table.cpp in Sources */,
 				7E4709B71A9B6FDA00E7C86B /* Main.cpp in Sources */,
 				7E4709B61A9B6FDA00E7C86B /* Camera.cpp in Sources */,
+				7E9684921AC2DC2A00C0D5C7 /* WallShelf.cpp in Sources */,
 				7E4709BB1A9B6FDA00E7C86B /* MyScene.cpp in Sources */,
 				7E4709B91A9B6FDA00E7C86B /* StaticEngine.cpp in Sources */,
 			);
