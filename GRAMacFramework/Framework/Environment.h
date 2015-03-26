@@ -79,32 +79,32 @@ namespace camera {
         float far_clipping_plane;
     };
 //    constexpr Config CAMERA = { 0.f, 80.f, 0.f, 90.f, 0.f, 0.f, 0.3f, 1000.f };
-    constexpr Config CAMERA = { 0.f, 10.f, 15.f, 10.f, 0.f, 0.f, 1.f, 500.f };
+    constexpr Config CAMERA = { 0.f, 15.f, 15.f, 10.f, 0.f, 0.f, 1.f, 500.f };
 }
 
-namespace chair {
+namespace sofa {
     using namespace datastruct;
     struct Config {
-        float width = 3;
+        float width = 6;
         float sit_thick = 0.5;
-        float sit_depth = 3.5;
-        float back_thick = 0.2;
-        float back_height = 4;
-        float leg_thick = 0.2;
-        float leg_height = 4;
+        float sit_depth = 6.3;
+        float back_thick = 0.5;
+        float back_height = 7;
+        float leg_thick = 0.5;
+        float leg_height = 7;
     };
 }
 
 namespace table {
     using namespace datastruct;
     struct Config {
-        float face_r = 3.;
-        float face_thick = 0.5;
-        float leg_r = 0.2;
-        float leg_height = 5.5;;
-        float bottom_width = 1.5;
-        float bottom_depth = 1.5;
-        float bottom_thick = 0.3;
+        float face_r = 4;
+        float face_thick = 0.8;
+        float leg_r = 0.5;
+        float leg_height = 9.5;
+        float bottom_width = 2.5;
+        float bottom_depth = 2.5;
+        float bottom_thick = 0.8;
     };
 }
 
@@ -115,5 +115,12 @@ namespace room {
 
 namespace wall_shelf {
     using namespace datastruct;
-    constexpr float THICK = 0.2;
+    constexpr float THICK = 0.8;
+}
+
+namespace time_clock {
+    using namespace datastruct;
+    constexpr float R = 1.5;
+    constexpr float BASE_THICK = 0.5;
+    constexpr float HAND_THICK = 0.5;
 }

@@ -11,16 +11,12 @@
 
 using namespace table;
 
-Table::Table(Position* table_pos) : table_pos(table_pos)
+Table::Table(Position* pos) : pos(pos)
 {
 }
 
 void Table::Draw()
 {
-    Color* main_color = new Color();
-    main_color->r = 75;
-    main_color->g = 52;
-    main_color->b = 0;
     Config* table = new Config();
     
     // table bottom
@@ -30,7 +26,7 @@ void Table::Draw()
     bottom_config->depth = table->bottom_depth;
     Position* bottom_pos = new Position();
     bottom_pos->x = 0;
-    bottom_pos->y = 0;
+    bottom_pos->y = table->bottom_thick / 2;
     bottom_pos->z = 0;
     
     // table leg
@@ -55,17 +51,17 @@ void Table::Draw()
 
     // Draw
     glPushMatrix();
-    glTranslatef(table_pos->x, table_pos->y, table_pos->z);
-    glRotatef(table_pos->x_angel, 1.f, 0.f, 0.f);
-    glRotatef(table_pos->y_angel, 0.f, 1.f, 0.f);
-    glRotatef(table_pos->z_angel, 0.f, 0.f, 1.f);
+    glTranslatef(pos->x, pos->y, pos->z);
+    glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
+    glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
+    glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
     createCylinder(face_config, face_pos);
     createCylinder(leg_config, leg_pos);
     createSquare(bottom_config, bottom_pos);
-    glRotatef(-table_pos->z_angel, 0.f, 0.f, 1.f);
-    glRotatef(-table_pos->y_angel, 0.f, 1.f, 0.f);
-    glRotatef(-table_pos->x_angel, 1.f, 0.f, 0.f);
-    glTranslatef(-table_pos->x, -table_pos->y, -table_pos->z);
+    glRotatef(-pos->x_angel, 1.f, 0.f, 0.f);
+    glRotatef(-pos->y_angel, 0.f, 1.f, 0.f);
+    glRotatef(-pos->z_angel, 0.f, 0.f, 1.f);  
+    glTranslatef(-pos->x, -pos->y, -pos->z);
     glPopMatrix();
 }
 

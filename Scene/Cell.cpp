@@ -12,14 +12,21 @@
 using namespace room;
 
 Cell::Cell(datastruct::CellConfig* config, datastruct::Position* pos)
-        : width(config->width), depth(config->depth), height(config->height), pos(pos),
+        : width(config->width), depth(config->depth), height(config->height),
           have_front(config->have_front), have_back(config->have_back), have_left(config->have_left),
-          have_right(config->have_right), have_top(config->have_top), have_bottom(config->have_bottom)
+          have_right(config->have_right), have_top(config->have_top), have_bottom(config->have_bottom),
+          pos(pos)
 {
 }
 
 void Cell::Draw()
 {
+    glPushMatrix();
+    glTranslatef(pos->x, pos->y, pos->z);
+    glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
+    glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
+    glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
+    
     // front wall
     if (have_front) {
         SquareConfig* fw_config = new SquareConfig();
@@ -27,12 +34,10 @@ void Cell::Draw()
         fw_config->depth = WALL_THICK;
         fw_config->height = height;
         Position* fw_pos = new Position();
-        fw_pos->x = pos->x;
-        fw_pos->y = pos->y + height / 2.;
-        fw_pos->z = pos->z + depth / 2.;
-        glPushMatrix();
+        fw_pos->x = 0;
+        fw_pos->y = height / 2. - WALL_THICK / 2;
+        fw_pos->z = depth / 2.;
         createSquare(fw_config, fw_pos);
-        glPopMatrix();
     }
     
     // left wall
@@ -42,13 +47,11 @@ void Cell::Draw()
         lw_config->depth = WALL_THICK;
         lw_config->height = height;
         Position* lw_pos = new Position();
-        lw_pos->x = pos->x - width / 2.;
-        lw_pos->y = pos->y + height / 2.;
-        lw_pos->z = pos->z;
+        lw_pos->x = - width / 2. + WALL_THICK / 2;
+        lw_pos->y = height / 2.;
+        lw_pos->z = 0;
         lw_pos->y_angel = 90;
-        glPushMatrix();
         createSquare(lw_config, lw_pos);
-        glPopMatrix();
     }
     
     // right wall
@@ -58,13 +61,11 @@ void Cell::Draw()
         rw_config->depth = WALL_THICK;
         rw_config->height = height;
         Position* rw_pos = new Position();
-        rw_pos->x = pos->x + width / 2.;
-        rw_pos->y = pos->y + height / 2.;
-        rw_pos->z = pos->z;
+        rw_pos->x = width / 2. - WALL_THICK / 2;
+        rw_pos->y = height / 2.;
+        rw_pos->z = 0;
         rw_pos->y_angel = 90;
-        glPushMatrix();
         createSquare(rw_config, rw_pos);
-        glPopMatrix();
     }
     
     // back
@@ -74,12 +75,10 @@ void Cell::Draw()
         bw_config->depth = WALL_THICK;
         bw_config->height = height;
         Position* bw_pos = new Position();
-        bw_pos->x = pos->x;
-        bw_pos->y = pos->y + height / 2.;
-        bw_pos->z = pos->z - depth / 2.;
-        glPushMatrix();
+        bw_pos->x = 0;
+        bw_pos->y = height / 2.;
+        bw_pos->z = - depth / 2. + WALL_THICK / 2;
         createSquare(bw_config, bw_pos);
-        glPopMatrix();
     }
     
     // top
@@ -89,13 +88,30 @@ void Cell::Draw()
         tw_config->depth = depth;
         tw_config->height = WALL_THICK;
         Position* tw_pos = new Position();
-        tw_pos->x = pos->x;
-        tw_pos->y = pos->y + height;
-        tw_pos->z = pos->z;
-        glPushMatrix();
+        tw_pos->x = 0;
+        tw_pos->y = height - WALL_THICK / 2;
+        tw_pos->z = 0;
         createSquare(tw_config, tw_pos);
-        glPopMatrix();
     }
+    
+    // bottom
+    if (have_bottom) {
+        SquareConfig* mw_config = new SquareConfig();
+        mw_config->width = width;
+        mw_config->depth = depth;
+        mw_config->height = WALL_THICK;
+        Position* mw_pos = new Position();
+        mw_pos->x = 0;
+        mw_pos->y = 0;
+        mw_pos->z = 0;
+        createSquare(mw_config, mw_pos);
+    }
+    
+    glRotatef(-pos->x_angel, 1.f, 0.f, 0.f);
+    glRotatef(-pos->y_angel, 0.f, 1.f, 0.f);
+    glRotatef(-pos->z_angel, 0.f, 0.f, 1.f);
+    glTranslatef(-pos->x, -pos->y, -pos->z);
+    glPopMatrix();
 }
 
 void Cell::Update( const double& deltaTime )

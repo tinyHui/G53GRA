@@ -7,10 +7,11 @@ For each object in your scene, #include its header file then add it to the scene
 #include "Environment.h"
 #include "MyScene.h"
 #include "Light.h"
-#include "Chair.h"
+#include "Sofa.h"
 #include "Table.h"
 #include "Cell.h"
 #include "WallShelf.h"
+#include "Clock.h"
 
 using namespace datastruct;
 
@@ -31,12 +32,12 @@ void MyScene::Init()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_POLYGON_SMOOTH);
     
-    Position* chair1_pos = new Position();
-    chair1_pos->x = 8.9;
-    chair1_pos->z = -24.5;
-    chair1_pos->y_angel = -40;
-    Chair* chair1 = new Chair(chair1_pos);
-    AddObjectToScene(chair1);
+    Position* sofa1_pos = new Position();
+    sofa1_pos->x = 10;
+    sofa1_pos->z = -26;
+    sofa1_pos->y_angel = -40;
+    Sofa* sofa1 = new Sofa(sofa1_pos);
+    AddObjectToScene(sofa1);
 
     Position* table1_pos = new Position();
     table1_pos->x = 5;
@@ -46,10 +47,11 @@ void MyScene::Init()
     AddObjectToScene(table1);
     
     CellConfig* room1_config = new CellConfig();
-    room1_config->width = 60.f;
-    room1_config->depth = 80.f;
-    room1_config->height = 30.f;
-    room1_config->have_top =false;
+    room1_config->width = 60;
+    room1_config->depth = 80;
+    room1_config->height = 30;
+    room1_config->have_top = false;
+    room1_config->have_front = false;
     Position* room1_pos = new Position();
     room1_pos->x = 0;
     room1_pos->y = 0;
@@ -58,12 +60,48 @@ void MyScene::Init()
     AddObjectToScene(room1);
     
     SquareShelf* wall_shelf1_config = new SquareShelf();
-    wall_shelf1_config->width = 10;
+    wall_shelf1_config->width = 15;
     wall_shelf1_config->depth = 3;
     Position* wall_shelf1_pos = new Position();
-    wall_shelf1_pos->x = -10;
+    wall_shelf1_pos->x = -(room1_config->width - wall_shelf1_config->depth) / 2;;
     wall_shelf1_pos->y = 10;
-    wall_shelf1_pos->z = -(room1_config->depth - wall_shelf1_config->depth) / 2;
+    wall_shelf1_pos->z = -20;
+    wall_shelf1_pos->y_angel = 90;
     WallShelf* shelf1 = new WallShelf(wall_shelf1_config, wall_shelf1_pos);
     AddObjectToScene(shelf1);
+    
+    Position* clock_pos = new Position();
+    clock_pos->x = wall_shelf1_pos->x;
+    clock_pos->y = wall_shelf1_pos->y + wall_shelf::THICK + time_clock::R;
+    clock_pos->z = wall_shelf1_pos->z + 2;
+    clock_pos->x_angel = 70;
+    clock_pos->y_angel = 78;
+    Clock* clock1 = new Clock(clock_pos);
+    AddObjectToScene(clock1);
+    
+    CellConfig* ground_box1_config = new CellConfig();
+    ground_box1_config->width = 5;
+    ground_box1_config->depth = 5;
+    ground_box1_config->height = 5;
+    ground_box1_config->have_front = false;
+    Position* ground_box1_pos = new Position();
+    ground_box1_pos->x = -8;
+    ground_box1_pos->y = 0;
+    ground_box1_pos->z = -15;
+    ground_box1_pos->y_angel = -17;
+    Cell* ground_box1 = new Cell(ground_box1_config, ground_box1_pos);
+    AddObjectToScene(ground_box1);
+    
+    CellConfig* ground_box2_config = new CellConfig();
+    ground_box2_config->width = 5;
+    ground_box2_config->depth = 5;
+    ground_box2_config->height = 5;
+    ground_box2_config->have_front = false;
+    Position* ground_box2_pos = new Position();
+    ground_box2_pos->x = -16;
+    ground_box2_pos->y = 0;
+    ground_box2_pos->z = -15;
+    ground_box2_pos->y_angel = 15;
+    Cell* ground_box2 = new Cell(ground_box2_config, ground_box2_pos);
+    AddObjectToScene(ground_box2);
 }

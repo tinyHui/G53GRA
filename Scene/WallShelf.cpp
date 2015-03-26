@@ -22,15 +22,21 @@ void WallShelf::Draw()
     shelf_config->width = config->width;
     shelf_config->height = THICK;
     shelf_config->depth = config->depth;
+    Position* shelf_pos = new Position();
+    shelf_pos->x = 0;
+    shelf_pos->y = 0;
+    shelf_pos->z = 0;
     
     glPushMatrix();
-    glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
-    glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
+    glTranslatef(pos->x, pos->y, pos->z);
     glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
-    createSquare(shelf_config, pos);
+    glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
+    glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
+    createSquare(shelf_config, shelf_pos);
     glRotatef(-pos->x_angel, 1.f, 0.f, 0.f);
     glRotatef(-pos->y_angel, 0.f, 1.f, 0.f);
     glRotatef(-pos->z_angel, 0.f, 0.f, 1.f);
+    glTranslatef(-pos->x, -pos->y, -pos->z);
     glPopMatrix();
 }
 
