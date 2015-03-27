@@ -1,19 +1,19 @@
 //
-//  Sofa.h
+//  Lamp.h
 //  G53GRA
 //
-//  Created by Jason Chen on 3/26/15.
+//  Created by Jason Chen on 3/27/15.
 //  Copyright (c) 2015 NottinghamUniversity. All rights reserved.
 //
 
 #include "Environment.h"
 #include "Object.h"
 
-class Sofa : public Object
+class Lamp : public Object
 {
 public:
-    Sofa(datastruct::Position* pos);
-    ~Sofa(){};
+    Lamp(datastruct::Position* pos);
+    ~Lamp(){};
     
     void Draw();
     void Update(const double& deltaTime);

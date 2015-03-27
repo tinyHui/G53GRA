@@ -7,11 +7,13 @@ For each object in your scene, #include its header file then add it to the scene
 #include "Environment.h"
 #include "MyScene.h"
 #include "Light.h"
+#include "Chair.h"
 #include "Sofa.h"
 #include "Table.h"
 #include "Cell.h"
 #include "WallShelf.h"
 #include "Clock.h"
+#include "Lamp.h"
 
 using namespace datastruct;
 
@@ -32,16 +34,30 @@ void MyScene::Init()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_POLYGON_SMOOTH);
     
+//    Position* chair1_pos = new Position();
+//    chair1_pos->x = 10;
+//    chair1_pos->z = -26;
+//    chair1_pos->y_angel = -40;
+//    Chair* chair1 = new Chair(chair1_pos);
+//    AddObjectToScene(chair1);
+    
     Position* sofa1_pos = new Position();
-    sofa1_pos->x = 10;
-    sofa1_pos->z = -26;
-    sofa1_pos->y_angel = -40;
+    sofa1_pos->x = -5;
+    sofa1_pos->z = -30;
+    sofa1_pos->y_angel = 10;
     Sofa* sofa1 = new Sofa(sofa1_pos);
     AddObjectToScene(sofa1);
+    
+    Position* sofa2_pos = new Position();
+    sofa2_pos->x = 15;
+    sofa2_pos->z = -26;
+    sofa2_pos->y_angel = -40;
+    Sofa* sofa2 = new Sofa(sofa2_pos);
+    AddObjectToScene(sofa2);
 
     Position* table1_pos = new Position();
-    table1_pos->x = 5;
-    table1_pos->z = -20;
+    table1_pos->x = 15;
+    table1_pos->z = -12;
     table1_pos->y_angel = 20;
     Table* table1 = new Table(table1_pos);
     AddObjectToScene(table1);
@@ -85,10 +101,10 @@ void MyScene::Init()
     ground_box1_config->height = 5;
     ground_box1_config->have_front = false;
     Position* ground_box1_pos = new Position();
-    ground_box1_pos->x = -8;
+    ground_box1_pos->x = -17;
     ground_box1_pos->y = 0;
-    ground_box1_pos->z = -15;
-    ground_box1_pos->y_angel = -17;
+    ground_box1_pos->z = -28;
+    ground_box1_pos->y_angel = 25;
     Cell* ground_box1 = new Cell(ground_box1_config, ground_box1_pos);
     AddObjectToScene(ground_box1);
     
@@ -98,10 +114,17 @@ void MyScene::Init()
     ground_box2_config->height = 5;
     ground_box2_config->have_front = false;
     Position* ground_box2_pos = new Position();
-    ground_box2_pos->x = -16;
+    ground_box2_pos->x = -23;
     ground_box2_pos->y = 0;
-    ground_box2_pos->z = -15;
-    ground_box2_pos->y_angel = 15;
+    ground_box2_pos->z = -18;
+    ground_box2_pos->y_angel = 10;
     Cell* ground_box2 = new Cell(ground_box2_config, ground_box2_pos);
     AddObjectToScene(ground_box2);
+    
+    Position* lamp1_pos = new Position();
+    lamp1_pos->x = -23;
+    lamp1_pos->z = -32;
+    lamp1_pos->y_angel = 45;
+    Lamp* lamp1 = new Lamp(lamp1_pos);
+    AddObjectToScene(lamp1);
 }
