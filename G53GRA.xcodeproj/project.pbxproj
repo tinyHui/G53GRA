@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7E020C381AC4329E00B86D6A /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E020C361AC4329E00B86D6A /* Clock.cpp */; };
 		7E020C401AC4C8A600B86D6A /* Chair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E020C3E1AC4C8A600B86D6A /* Chair.cpp */; };
-		7E020C411AC4C8A600B86D6A /* Sofa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E020C3F1AC4C8A600B86D6A /* Sofa.cpp */; };
 		7E020C441AC4D96F00B86D6A /* Lamp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E020C421AC4D96F00B86D6A /* Lamp.cpp */; };
 		7E162AFA1AC5FB4100B58A41 /* Sun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E162AF81AC5FB4100B58A41 /* Sun.cpp */; };
 		7E4709B61A9B6FDA00E7C86B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4709A51A9B6FDA00E7C86B /* Camera.cpp */; };
@@ -21,6 +20,8 @@
 		7E9684921AC2DC2A00C0D5C7 /* WallShelf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E9684901AC2DC2A00C0D5C7 /* WallShelf.cpp */; };
 		7E9FF1451AC0CC7800EB780E /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E9FF1431AC0CC7800EB780E /* Cell.cpp */; };
 		7EBEE07D1AC8583900CCE68C /* LampLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EBEE07B1AC8583900CCE68C /* LampLight.cpp */; };
+		7EBEE0821AC8629600CCE68C /* Armchair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EBEE07E1AC8629600CCE68C /* Armchair.cpp */; };
+		7EBEE0831AC8629600CCE68C /* Couch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EBEE0801AC8629600CCE68C /* Couch.cpp */; };
 		7EE967471AC07C5400508E80 /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EE967451AC07C5400508E80 /* Table.cpp */; };
 		FFB641411A812B3800739C9C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB641401A812B3800739C9C /* OpenGL.framework */; };
 		FFB641431A812B3D00739C9C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB641421A812B3D00739C9C /* GLUT.framework */; };
@@ -42,9 +43,7 @@
 		7E020C361AC4329E00B86D6A /* Clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
 		7E020C371AC4329E00B86D6A /* Clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
 		7E020C3C1AC4C8A600B86D6A /* Chair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chair.h; sourceTree = "<group>"; };
-		7E020C3D1AC4C8A600B86D6A /* Sofa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sofa.h; sourceTree = "<group>"; };
 		7E020C3E1AC4C8A600B86D6A /* Chair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chair.cpp; sourceTree = "<group>"; };
-		7E020C3F1AC4C8A600B86D6A /* Sofa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sofa.cpp; sourceTree = "<group>"; };
 		7E020C421AC4D96F00B86D6A /* Lamp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lamp.cpp; sourceTree = "<group>"; };
 		7E020C431AC4D96F00B86D6A /* Lamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lamp.h; sourceTree = "<group>"; };
 		7E162AF81AC5FB4100B58A41 /* Sun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sun.cpp; sourceTree = "<group>"; };
@@ -69,6 +68,10 @@
 		7E9FF1441AC0CC7800EB780E /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		7EBEE07B1AC8583900CCE68C /* LampLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LampLight.cpp; sourceTree = "<group>"; };
 		7EBEE07C1AC8583900CCE68C /* LampLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LampLight.h; sourceTree = "<group>"; };
+		7EBEE07E1AC8629600CCE68C /* Armchair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Armchair.cpp; sourceTree = "<group>"; };
+		7EBEE07F1AC8629600CCE68C /* Armchair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Armchair.h; sourceTree = "<group>"; };
+		7EBEE0801AC8629600CCE68C /* Couch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Couch.cpp; sourceTree = "<group>"; };
+		7EBEE0811AC8629600CCE68C /* Couch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Couch.h; sourceTree = "<group>"; };
 		7EE967451AC07C5400508E80 /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		7EE967461AC07C5400508E80 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
 		FFB641361A812B2E00739C9C /* G53GRA */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = G53GRA; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,10 +153,12 @@
 		7E4E05261AADED9F003B6A2D /* constructor */ = {
 			isa = PBXGroup;
 			children = (
+				7EBEE07E1AC8629600CCE68C /* Armchair.cpp */,
+				7EBEE07F1AC8629600CCE68C /* Armchair.h */,
+				7EBEE0801AC8629600CCE68C /* Couch.cpp */,
+				7EBEE0811AC8629600CCE68C /* Couch.h */,
 				7E9FF1431AC0CC7800EB780E /* Cell.cpp */,
 				7E9FF1441AC0CC7800EB780E /* Cell.h */,
-				7E020C3F1AC4C8A600B86D6A /* Sofa.cpp */,
-				7E020C3D1AC4C8A600B86D6A /* Sofa.h */,
 				7EE967451AC07C5400508E80 /* Table.cpp */,
 				7EE967461AC07C5400508E80 /* Table.h */,
 				7E9684901AC2DC2A00C0D5C7 /* WallShelf.cpp */,
@@ -247,6 +252,7 @@
 				7E4709BA1A9B6FDA00E7C86B /* Texture.cpp in Sources */,
 				7E4709B81A9B6FDA00E7C86B /* Scene.cpp in Sources */,
 				7E9FF1451AC0CC7800EB780E /* Cell.cpp in Sources */,
+				7EBEE0821AC8629600CCE68C /* Armchair.cpp in Sources */,
 				7EE967471AC07C5400508E80 /* Table.cpp in Sources */,
 				7E4709B71A9B6FDA00E7C86B /* Main.cpp in Sources */,
 				7E4709B61A9B6FDA00E7C86B /* Camera.cpp in Sources */,
@@ -254,10 +260,10 @@
 				7EBEE07D1AC8583900CCE68C /* LampLight.cpp in Sources */,
 				7E162AFA1AC5FB4100B58A41 /* Sun.cpp in Sources */,
 				7E020C441AC4D96F00B86D6A /* Lamp.cpp in Sources */,
+				7EBEE0831AC8629600CCE68C /* Couch.cpp in Sources */,
 				7E4709BB1A9B6FDA00E7C86B /* MyScene.cpp in Sources */,
 				7E020C381AC4329E00B86D6A /* Clock.cpp in Sources */,
 				7E4709B91A9B6FDA00E7C86B /* StaticEngine.cpp in Sources */,
-				7E020C411AC4C8A600B86D6A /* Sofa.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

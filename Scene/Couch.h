@@ -9,11 +9,11 @@
 #include "Environment.h"
 #include "Object.h"
 
-class Sofa : public Object
+class Couch : public Object
 {
 public:
-    Sofa(datastruct::Position* pos);
-    ~Sofa(){};
+    Couch(datastruct::Position* pos);
+    ~Couch(){};
     
     void Draw();
     void Update(const double& deltaTime);

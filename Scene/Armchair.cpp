@@ -7,15 +7,15 @@
 //
 
 #include "Environment.h"
-#include "Sofa.h"
+#include "Armchair.h"
 
 using namespace sofa;
 
-Sofa::Sofa(Position* pos) : pos(pos)
+Armchair::Armchair(Position* pos) : pos(pos)
 {
 }
 
-void Sofa::Draw()
+void Armchair::Draw()
 {
     GLfloat mat_ambient[] = { 0.58f, 0.27f, 0.21f, 1.f };     // Define the ambient material colour property K_a
     GLfloat mat_diffuse[] = { 0.29f, 0.14f, 0.11f, 1.f };     // Define the diffuse material colour property K_d
@@ -58,7 +58,7 @@ void Sofa::Draw()
     ls_pos->y = SIDE_HEIGHT / 2;
     ls_pos->z = - (BACK_THICK + GAP) / 2;
     
-    // sofa side left
+    // sofa side right
     SquareConfig* rs_config = new SquareConfig();
     rs_config->width = SIDE_THICK;
     rs_config->height = SIDE_HEIGHT;
@@ -88,12 +88,12 @@ void Sofa::Draw()
     glPopAttrib();
 }
 
-void Sofa::Update( const double& deltaTime )
+void Armchair::Update( const double& deltaTime )
 {
     
 }
 
-void Sofa::HandleKey(int key, int state, int x, int y)
+void Armchair::HandleKey(int key, int state, int x, int y)
 {
     
 }
