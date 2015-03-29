@@ -138,8 +138,8 @@ namespace lamp {
     using namespace datastruct;
     constexpr float LIGHT_WIDTH = 6;
     constexpr float LIGHT_DEPTH = 6;
-    constexpr float LIGHT_THICK = 5;
-    constexpr float LEG_R = 0.5;
+    constexpr float LIGHT_THICK = 5.5;
+    constexpr float LEG_R = 0.2;
     constexpr float LEG_HEIGHT = 18;
     constexpr float BOTTOM_WIDTH = 3;
     constexpr float BOTTOM_DEPTH = 3;

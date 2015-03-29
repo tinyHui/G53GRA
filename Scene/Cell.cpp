@@ -21,7 +21,19 @@ Cell::Cell(datastruct::CellConfig* config, datastruct::Position* pos)
 
 void Cell::Draw()
 {
+    GLfloat mat_ambient[] = { 1., 1., 1., 1. };     // Define the ambient material colour property K_a
+    GLfloat mat_diffuse[] = { 1., 1., 1., 1. };     // Define the diffuse material colour property K_d
+    GLfloat mat_specular[] = { 1., 1., 1., 0.2 };    // Define the specular material colour property K_s
+    GLfloat mat_shininess[] = { 128. };
+    
+    glPushAttrib(GL_LIGHTING);                          // Push/remember the materail settings before overriding the defaults
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    
     glPushMatrix();
+    glColor3f(0.95f, 0.95f, 0.95f);
     glTranslatef(pos->x, pos->y, pos->z);
     glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
     glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
@@ -112,6 +124,7 @@ void Cell::Draw()
     glRotatef(-pos->z_angel, 0.f, 0.f, 1.f);
     glTranslatef(-pos->x, -pos->y, -pos->z);
     glPopMatrix();
+    glPopAttrib();
 }
 
 void Cell::Update( const double& deltaTime )

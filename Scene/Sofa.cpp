@@ -17,6 +17,17 @@ Sofa::Sofa(Position* pos) : pos(pos)
 
 void Sofa::Draw()
 {
+    GLfloat mat_ambient[] = { 0.58f, 0.27f, 0.21f, 1.f };     // Define the ambient material colour property K_a
+    GLfloat mat_diffuse[] = { 0.29f, 0.14f, 0.11f, 1.f };     // Define the diffuse material colour property K_d
+    GLfloat mat_specular[] = { 0.3f, 0.2f, 0.1f, 0.8f };    // Define the specular material colour property K_s
+    GLfloat mat_shininess[] = { 10. };
+    
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    
     // sofa flat
     SquareConfig* sit_config = new SquareConfig();
     sit_config->width = WIDTH;
@@ -59,6 +70,7 @@ void Sofa::Draw()
     
     // Draw
     glPushMatrix();
+    glColor3f(0.58f, 0.27f, 0.21f);
     glTranslatef(pos->x, pos->y, pos->z);
     glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
     glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
@@ -72,6 +84,8 @@ void Sofa::Draw()
     glRotatef(-pos->z_angel, 0.f, 0.f, 1.f);
     glTranslatef(-pos->x, -pos->y, -pos->z);
     glPopMatrix();
+    
+    glPopAttrib();
 }
 
 void Sofa::Update( const double& deltaTime )

@@ -53,7 +53,9 @@ void Lamp::Draw()
     glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
     glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
     glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
+    glColor3f(1.f, 0.9647f, 0.7135f);
     createSquare(light_config, light_pos);
+    glColor3f(0.94f, 0.94f, 0.94f);
     createCylinder(leg_config, leg_pos);
     createSquare(bottom_config, bottom_pos);
     glRotatef(-pos->x_angel, 1.f, 0.f, 0.f);
