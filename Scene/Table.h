@@ -21,4 +21,11 @@ public:
     
 private:
     datastruct::Position* pos;
+
+    datastruct::SquareConfig bottom_config;
+    datastruct::Position bottom_pos;
+    datastruct::CylinderConfig leg_config;
+    datastruct::Position leg_pos;
+    datastruct::CylinderConfig face_config;
+    datastruct::Position face_pos;
 };

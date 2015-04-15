@@ -10,11 +10,11 @@
 #include "Environment.h"
 #include "Object.h"
 
-class Armchair : public Object
+class CouchMain : public Object
 {
 public:
-    Armchair(datastruct::Position* pos);
-    ~Armchair(){};
+    CouchMain(datastruct::Position* pos);
+    ~CouchMain(){};
     
     void Draw();
     void Update(const double& deltaTime);
@@ -22,16 +22,18 @@ public:
     
 private:
     datastruct::Position* pos;
-     
     TextureManager* texture_manager;
     GLuint* sofa_box;
-    
+
     datastruct::SquareConfig sit_config;
+    datastruct::Position sit1_pos;
+    datastruct::Position sit2_pos;
+    datastruct::Position sit3_pos;
     datastruct::SquareConfig back_config;
-    datastruct::SquareConfig ls_config;
-    datastruct::SquareConfig rs_config;
-    datastruct::Position sit_pos;
-    datastruct::Position back_pos;
+    datastruct::Position back1_pos;
+    datastruct::Position back2_pos;
+    datastruct::Position back3_pos;
+    datastruct::SquareConfig s_config;
     datastruct::Position ls_pos;
     datastruct::Position rs_pos;
 };

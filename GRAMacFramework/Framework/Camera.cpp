@@ -24,15 +24,15 @@ Camera::Camera() : wKey(0), sKey(0), aKey(0), dKey(0), currentButton(0), mouseX(
     // set the view direction vector of the camera to be (0,0,-1)
     vd[0] = 0.0f;
     vd[1] = 0.0f;
-    vd[2] = -1.0f;
+    vd[2] = 1.0f;
     
     // set the planar forward direction vector of the camera to be (0,0,-1)
     forward[0] = 0.0f;
     forward[1] = 0.0f;
-    forward[2] = -1.0f;
+    forward[2] = 1.0f;
     
     // set the right vector to point along the x axis
-    right[0] = 1.0f;
+    right[0] = -1.0f;
     right[1] = 0.0f;
     right[2] = 0.0f;
     
@@ -41,6 +41,26 @@ Camera::Camera() : wKey(0), sKey(0), aKey(0), dKey(0), currentButton(0), mouseX(
     up[1] = 1.0f;
     up[2] = 0.0f;
     
+    // roate camera
+    sub(vd, up, 0.3);
+    add(vd, right, 2.3);
+    // normalise the view direction so it is length 1
+    norm(vd);
+    
+    // use the view direction crossed with the up vector to obtain the corrected right vector
+    cross(vd, up, right);
+    
+    // normalise the right vector
+    norm(right);
+    
+    // As we want out camera to stay on the same plane at the same height (i.e. not move up and down the y axis)
+    // update a forward direction vector which can be used to move the camera
+    // This forward vector moves the camera in the same direction as the view direction except it will not contain
+    // any y component so it cannot move off of its original height.
+    // This was we are free to look up and down however moving forward and back will not move us off of the camera plane
+    forward[0] = vd[0];
+    forward[2] = vd[2];
+    norm(forward);
 }
 
 Camera::~Camera()
@@ -99,10 +119,6 @@ void Camera::SetUpCamera()
     // clear the old model view matrix and replace it with one that only contains the world to view space transform
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    // incline camera
-    glRotatef(CAMERA.x_angel, 1, 0, 0);
-    glRotatef(CAMERA.y_angel, 0, 1, 0);
-    glRotatef(CAMERA.z_angel, 0, 0, 1);
     
     gluLookAt(eyePosition[0], eyePosition[1], eyePosition[2], eyePosition[0]+vd[0], eyePosition[1]+vd[1], eyePosition[2]+vd[2], up[0], up[1], up[2]);
 }
@@ -155,7 +171,6 @@ void Camera::Update( const double& deltaTime )
     {
         sub(eyePosition, up, speed);
     }
-    
 }
 
 void Camera::HandleKey( int key, int state, int x, int y )

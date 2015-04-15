@@ -19,16 +19,16 @@ void LampLight::Draw()
 {
     float y = lamp_pos->y + lamp::BOTTOM_THICK + lamp::LEG_HEIGHT + lamp::LIGHT_THICK / 2;
 
-    float ambient[]  = { .5f, .3f, .2f, 0.2f };      // ambient light (20% white)
-    float diffuse[]  = { .5f, .6f, .5f, 0.1f };      // diffuse light (50% white)
-    float specular[] = { 0.1f, 0.1f, 0.1f, 0.1f };      // specular light (100% white)
-    float position[] = { lamp_pos->x, y, lamp_pos->z, 1.f };      // directional light (w = 0)
+    float ambient[]  = { .3f, .25f, .2f, 0.2f };
+    float diffuse[]  = { .2f, .3f, .4f, 0.1f };
+    float specular[] = { 0.1f, 0.1f, 0.1f, 0.1f };
+    float position[] = { lamp_pos->x, y, lamp_pos->z, 1.f };
     
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);      // set ambient parameter of light source
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);      // set diffuse parameter of light source
-    glLightfv(GL_LIGHT0, GL_SPECULAR, specular);    // set specular parameter of light source
-    glLightfv(GL_LIGHT0, GL_POSITION, position);    // set direction vector of light source
-    glEnable(GL_LIGHT0);
+    glLightfv(GL_LIGHT1, GL_AMBIENT, ambient);      // set ambient parameter of light source
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse);      // set diffuse parameter of light source
+    glLightfv(GL_LIGHT1, GL_SPECULAR, specular);    // set specular parameter of light source
+    glLightfv(GL_LIGHT1, GL_POSITION, position);    // set direction vector of light source
+    glEnable(GL_LIGHT1);
 }
 
 

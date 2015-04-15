@@ -13,40 +13,33 @@ using namespace table;
 
 Table::Table(Position* pos) : pos(pos)
 {
+    // table bottom
+    bottom_config.width = BOTTOM_WIDTH;
+    bottom_config.height = BOTTOM_THICK;
+    bottom_config.depth = BOTTOM_DEPTH;
+    bottom_pos.x = 0;
+    bottom_pos.y = BOTTOM_THICK / 2;
+    bottom_pos.z = 0;
+    
+    // table leg
+    leg_config.top_r = LEG_R;
+    leg_config.bottom_r = LEG_R;
+    leg_config.height = LEG_HEIGHT;
+    leg_pos.x = 0;
+    leg_pos.y = bottom_pos.y + LEG_HEIGHT / 2;
+    leg_pos.z = 0;
+    
+    // table face
+    face_config.top_r = FACE_R;
+    face_config.bottom_r = FACE_R;
+    face_config.height = FACE_THICK;
+    face_pos.x = 0;
+    face_pos.y = leg_pos.y + leg_config.height / 2;
+    face_pos.z = 0;
 }
 
 void Table::Draw()
 {
-    // table bottom
-    SquareConfig* bottom_config = new SquareConfig();
-    bottom_config->width = BOTTOM_WIDTH;
-    bottom_config->height = BOTTOM_THICK;
-    bottom_config->depth = BOTTOM_DEPTH;
-    Position* bottom_pos = new Position();
-    bottom_pos->x = 0;
-    bottom_pos->y = BOTTOM_THICK / 2;
-    bottom_pos->z = 0;
-    
-    // table leg
-    CylinderConfig* leg_config = new CylinderConfig();
-    leg_config->top_r = LEG_R;
-    leg_config->bottom_r = LEG_R;
-    leg_config->height = LEG_HEIGHT;
-    Position* leg_pos = new Position();
-    leg_pos->x = 0;
-    leg_pos->y = bottom_pos->y + LEG_HEIGHT / 2;
-    leg_pos->z = 0;
-    
-    // table face
-    CylinderConfig* face_config = new CylinderConfig();
-    face_config->top_r = FACE_R;
-    face_config->bottom_r = FACE_R;
-    face_config->height = FACE_THICK;
-    Position* face_pos = new Position();
-    face_pos->x = 0;
-    face_pos->y = leg_pos->y + leg_config->height / 2;
-    face_pos->z = 0;
-
     // Draw
     glPushMatrix();
     glTranslatef(pos->x, pos->y, pos->z);
@@ -56,10 +49,6 @@ void Table::Draw()
     createCylinder(face_config, face_pos);
     createCylinder(leg_config, leg_pos);
     createSquare(bottom_config, bottom_pos);
-    glRotatef(-pos->x_angel, 1.f, 0.f, 0.f);
-    glRotatef(-pos->y_angel, 0.f, 1.f, 0.f);
-    glRotatef(-pos->z_angel, 0.f, 0.f, 1.f);  
-    glTranslatef(-pos->x, -pos->y, -pos->z);
     glPopMatrix();
 }
 
