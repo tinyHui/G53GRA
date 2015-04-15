@@ -15,8 +15,9 @@ using namespace sofa;
 Armchair::Armchair(Position* pos) : pos(pos)
 {
     texture_manager = new TextureManager();
+    
     sofa_box = new GLuint[6];
-    sofa_box[0] = texture_manager->loadImage("Resources/sofa.bmp");
+    sofa_box[0] = texture_manager->loadImage("img/leather.bmp");
     sofa_box[1] = sofa_box[0];
     sofa_box[2] = sofa_box[1];
     sofa_box[3] = sofa_box[2];

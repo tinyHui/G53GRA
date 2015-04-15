@@ -174,28 +174,21 @@ void MyScene::Init()
     Chair* chair8 = new Chair(chair8_pos);
     AddObjectToScene(chair8);
     
-    // yard
-    SquareConfig* outdoor_config = new SquareConfig();
-    outdoor_config->width = room_config->width + dog::WALK_OFFSET_LIM * 3;
-    outdoor_config->depth = room_config->depth + dog::WALK_OFFSET_LIM * 3;
-    outdoor_config->height = room_config->height + 100;
-    Position* outdoor_pos = new Position();
-    outdoor_pos->x = room_pos->x;
-    outdoor_pos->y = -0.01;
-    outdoor_pos->z = room_pos->z - dog::WALK_OFFSET_LIM;
-    Outdoor* outdoor = new Outdoor(outdoor_config, outdoor_pos);
-    AddObjectToScene(outdoor);
-    //    Position* armchair_pos = new Position();
-    //    armchair_pos->x = -23;
-    //    armchair_pos->z = -10;
-    //    armchair_pos->y_angel = 90;
-    //    Armchair* armchair = new Armchair(armchair_pos);
-    //    AddObjectToScene(armchair);
-    Position* dog_pos = new Position();
-    dog_pos->x = room_pos->x;
-    dog_pos->z = room_pos->z - room_config->depth / 2 - dog::WALK_OFFSET_LIM - 10;
-    Dog* dog = new Dog(dog_pos);
-    AddObjectToScene(dog);
+//    SquareConfig* outdoor_config = new SquareConfig();
+//    outdoor_config->width = room_config->width + dog::WALK_OFFSET_LIM * 3;
+//    outdoor_config->depth = room_config->depth + dog::WALK_OFFSET_LIM * 3;
+//    outdoor_config->height = room_config->height + 100;
+//    Position* outdoor_pos = new Position();
+//    outdoor_pos->x = room_pos->x;
+//    outdoor_pos->y = -0.01;
+//    outdoor_pos->z = room_pos->z - dog::WALK_OFFSET_LIM;
+//    Outdoor* outdoor = new Outdoor(outdoor_config, outdoor_pos);
+//    AddObjectToScene(outdoor);
+//    Position* dog_pos = new Position();
+//    dog_pos->x = room_pos->x;
+//    dog_pos->z = room_pos->z - room_config->depth / 2 - dog::WALK_OFFSET_LIM - 10;
+//    Dog* dog = new Dog(dog_pos);
+//    AddObjectToScene(dog);
     
     Sun* sun = new Sun();
     AddObjectToScene(sun);

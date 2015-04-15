@@ -15,13 +15,22 @@ using namespace sofa;
 CouchMain::CouchMain(Position* pos) : pos(pos)
 {
     texture_manager = new TextureManager();
-    sofa_box = new GLuint[6];
-    sofa_box[0] = texture_manager->loadImage("Resources/sofa.bmp");
-    sofa_box[1] = sofa_box[0];
-    sofa_box[2] = sofa_box[1];
-    sofa_box[3] = sofa_box[2];
-    sofa_box[4] = sofa_box[3];
-    sofa_box[5] = sofa_box[4];
+    
+    leather_box = new GLuint[6];
+    leather_box[0] = texture_manager->loadImage("img/leather.bmp");
+    leather_box[1] = leather_box[0];
+    leather_box[2] = leather_box[0];
+    leather_box[3] = leather_box[0];
+    leather_box[4] = leather_box[0];
+    leather_box[5] = leather_box[0];
+    
+    wood_box = new GLuint[6];
+    wood_box[0] = texture_manager->loadImage("img/wood.bmp");
+    wood_box[1] = wood_box[0];
+    wood_box[2] = wood_box[0];
+    wood_box[3] = wood_box[0];
+    wood_box[4] = wood_box[0];
+    wood_box[5] = wood_box[0];
 
     // sofa flat
     sit_config.width = WIDTH;
@@ -54,13 +63,19 @@ CouchMain::CouchMain(Position* pos) : pos(pos)
     // sofa side
     s_config.width = SIDE_THICK;
     s_config.height = SIDE_HEIGHT;
-    s_config.depth = sit_config.depth + back_config.depth;
+    s_config.depth = sit_config.depth + back_config.depth / 2;
     ls_pos.x = sit1_pos.x - (WIDTH + SIDE_THICK) / 2 - GAP;
     ls_pos.y = SIDE_HEIGHT / 2;
     ls_pos.z = - (BACK_THICK + GAP) / 2;
+    ls_pos.x_angel = 0;
+    ls_pos.y_angel = 0;
+    ls_pos.z_angel = 0;
     rs_pos.x = sit3_pos.x + (WIDTH + SIDE_THICK) / 2 + GAP;
     rs_pos.y = SIDE_HEIGHT / 2;
-    rs_pos.z = - (BACK_THICK + GAP) / 2;
+    rs_pos.z = ls_pos.z;
+    rs_pos.x_angel = 0;
+    rs_pos.y_angel = 0;
+    rs_pos.z_angel = 0;
 }
 
 void CouchMain::Draw()
@@ -83,14 +98,14 @@ void CouchMain::Draw()
     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
-    createSquare(sit_config, sit1_pos, sofa_box);
-    createSquare(sit_config, sit2_pos, sofa_box);
-    createSquare(sit_config, sit3_pos, sofa_box);
-    createSquare(back_config, back1_pos, sofa_box);
-    createSquare(back_config, back2_pos, sofa_box);
-    createSquare(back_config, back3_pos, sofa_box);
-    createSquare(s_config, ls_pos, sofa_box);
-    createSquare(s_config, rs_pos, sofa_box);
+    createSquare(sit_config, sit1_pos, leather_box);
+    createSquare(sit_config, sit2_pos, leather_box);
+    createSquare(sit_config, sit3_pos, leather_box);
+    createSquare(back_config, back1_pos, leather_box);
+    createSquare(back_config, back2_pos, leather_box);
+    createSquare(back_config, back3_pos, leather_box);
+    createSquare(s_config, ls_pos, wood_box);
+    createSquare(s_config, rs_pos, wood_box);
     glPopAttrib();
     
     glPopMatrix();

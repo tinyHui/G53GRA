@@ -23,7 +23,8 @@ public:
 private:
     datastruct::Position* pos;
     TextureManager* texture_manager;
-    GLuint* sofa_box;
+    GLuint* leather_box;
+    GLuint* wood_box;
 
     datastruct::SquareConfig sit_config;
     datastruct::Position sit1_pos;

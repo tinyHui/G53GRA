@@ -37,99 +37,201 @@ public:
     // Called every time the mouse moves, x and y are the mouse position.
     virtual void HandlePassiveMouseMotion( int x, int y ){}
     
-    void createSquare(datastruct::SquareConfig config, datastruct::Position pos, GLuint* texids=nullptr)
+    void createSquare(datastruct::SquareConfig config, datastruct::Position pos, GLuint* texids=nullptr, bool inverse=false)
     {
         using namespace datastruct;
         
         bool have_texture = texids != nullptr;
         
-        glPushMatrix();
-        glTranslatef(pos.x + pos.x_piv, pos.y + pos.y_piv, pos.z + pos.z_piv);
-        glRotated(pos.x_angel, 1., 0, 0);
-        glRotated(pos.y_angel, 0, 1., 0);
-        glRotated(pos.z_angel, 0, 0, 1.);
-        glTranslatef(-pos.x_piv, -pos.y_piv, -pos.z_piv);
-        glScalef(config.width, config.height, config.depth);
-        
-        // Front Face
-        if (have_texture && texids[0]) {
-            glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, texids[0]);
-        }
-        glBegin(GL_QUADS);
-        glNormal3f(0.f, 0.f, 1.f);
-        if (have_texture && texids[0]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
-        if (have_texture && texids[0]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
-        if (have_texture && texids[0]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Right Of The Texture and Quad
-        if (have_texture && texids[0]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
-        glEnd();
-        if (have_texture && texids[0]) glDisable(GL_TEXTURE_2D);
+        if (!inverse) {
+            glPushMatrix();
+            glTranslatef(pos.x + pos.x_piv, pos.y + pos.y_piv, pos.z + pos.z_piv);
+            glRotated(pos.x_angel, 1., 0, 0);
+            glRotated(pos.y_angel, 0, 1., 0);
+            glRotated(pos.z_angel, 0, 0, 1.);
+            glTranslatef(-pos.x_piv, -pos.y_piv, -pos.z_piv);
+            glScalef(config.width, config.height, config.depth);
             
-        // Back Face
-        if (have_texture && texids[1]) {
-            glBindTexture(GL_TEXTURE_2D, texids[1]);
-            glEnable(GL_TEXTURE_2D);
+            // Front Face
+            if (have_texture && texids[0]) {
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, texids[0]);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, 0.f, 1.f);
+            if (have_texture && texids[0]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[0]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[0]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[0]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[0]) glDisable(GL_TEXTURE_2D);
+                
+            // Back Face
+            if (have_texture && texids[1]) {
+                glBindTexture(GL_TEXTURE_2D, texids[1]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, 0.f, -1.f);
+            if (have_texture && texids[1]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[1]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[1]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[1]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[1]) glDisable(GL_TEXTURE_2D);
+            
+            // Top Face
+            if (have_texture && texids[4]) {
+                glBindTexture(GL_TEXTURE_2D, texids[4]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, 1.f, 0.f);
+            if (have_texture && texids[4]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[4]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[4]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[4]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[4]) glDisable(GL_TEXTURE_2D);
+        
+            // Bottom Face
+            if (have_texture && texids[5]) {
+                glBindTexture(GL_TEXTURE_2D, texids[5]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, -1.f, 0.f);
+            if (have_texture && texids[5]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[5]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[5]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[5]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[5]) glDisable(GL_TEXTURE_2D);
+            
+            // Right face
+            if (have_texture && texids[3]) {
+                glBindTexture(GL_TEXTURE_2D, texids[3]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(1.f, 0.f, 0.f);
+            if (have_texture && texids[3]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[3]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[3]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[3]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[3]) glDisable(GL_TEXTURE_2D);
+            
+            // Left Face
+            if (have_texture && texids[2]) {
+                glBindTexture(GL_TEXTURE_2D, texids[2]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(-1.f, 0.f, 0.f);
+            if (have_texture && texids[2]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[2]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[2]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[2]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[2]) glDisable(GL_TEXTURE_2D);
+            
+            glPopMatrix();
+        } else {
+            glPushMatrix();
+            glTranslatef(pos.x + pos.x_piv, pos.y + pos.y_piv, pos.z + pos.z_piv);
+            glRotated(pos.x_angel, 1., 0, 0);
+            glRotated(pos.y_angel, 0, 1., 0);
+            glRotated(pos.z_angel, 0, 0, 1.);
+            glTranslatef(-pos.x_piv, -pos.y_piv, -pos.z_piv);
+            glScalef(config.width, config.height, config.depth);
+            
+            // Front Face
+            if (have_texture && texids[0]) {
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, texids[0]);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, 0.f, 1.f);
+            if (have_texture && texids[0]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[0]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[0]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[0]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[0]) glDisable(GL_TEXTURE_2D);
+            
+            // Back Face
+            if (have_texture && texids[1]) {
+                glBindTexture(GL_TEXTURE_2D, texids[1]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, 0.f, -1.f);
+            if (have_texture && texids[1]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[1]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[1]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[1]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[1]) glDisable(GL_TEXTURE_2D);
+            
+            // Top Face
+            if (have_texture && texids[4]) {
+                glBindTexture(GL_TEXTURE_2D, texids[4]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, 1.f, 0.f);
+            if (have_texture && texids[4]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[4]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[4]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[4]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[4]) glDisable(GL_TEXTURE_2D);
+            
+            // Bottom Face
+            if (have_texture && texids[5]) {
+                glBindTexture(GL_TEXTURE_2D, texids[5]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(0.f, -1.f, 0.f);
+            if (have_texture && texids[5]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[5]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[5]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[5]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[5]) glDisable(GL_TEXTURE_2D);
+            
+            // Right face
+            if (have_texture && texids[3]) {
+                glBindTexture(GL_TEXTURE_2D, texids[3]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(1.f, 0.f, 0.f);
+            if (have_texture && texids[3]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
+            if (have_texture && texids[3]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[3]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[3]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[3]) glDisable(GL_TEXTURE_2D);
+            
+            // Left Face
+            if (have_texture && texids[2]) {
+                glBindTexture(GL_TEXTURE_2D, texids[2]);
+                glEnable(GL_TEXTURE_2D);
+            }
+            glBegin(GL_QUADS);
+            glNormal3f(-1.f, 0.f, 0.f);
+            if (have_texture && texids[2]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
+            if (have_texture && texids[2]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Top Right Of The Texture and Quad
+            if (have_texture && texids[2]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
+            if (have_texture && texids[2]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
+            glEnd();
+            if (have_texture && texids[2]) glDisable(GL_TEXTURE_2D);
+            
+            glPopMatrix();
         }
-        glBegin(GL_QUADS);
-        glNormal3f(0.f, 0.f, -1.f);
-        if (have_texture && texids[1]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
-        if (have_texture && texids[1]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
-        if (have_texture && texids[1]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
-        if (have_texture && texids[1]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
-        glEnd();
-        if (have_texture && texids[1]) glDisable(GL_TEXTURE_2D);
-        
-        // Top Face
-        if (have_texture && texids[4]) {
-            glBindTexture(GL_TEXTURE_2D, texids[4]);
-            glEnable(GL_TEXTURE_2D);
-        }
-        glBegin(GL_QUADS);
-        glNormal3f(0.f, 1.f, 0.f);
-        if (have_texture && texids[4]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
-        if (have_texture && texids[4]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
-        if (have_texture && texids[4]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
-        if (have_texture && texids[4]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
-        glEnd();
-        if (have_texture && texids[4]) glDisable(GL_TEXTURE_2D);
-    
-        // Bottom Face
-        if (have_texture && texids[5]) {
-            glBindTexture(GL_TEXTURE_2D, texids[5]);
-            glEnable(GL_TEXTURE_2D);
-        }
-        glBegin(GL_QUADS);
-        glNormal3f(0.f, -1.f, 0.f);
-        if (have_texture && texids[5]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Top Right Of The Texture and Quad
-        if (have_texture && texids[5]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Top Left Of The Texture and Quad
-        if (have_texture && texids[5]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
-        if (have_texture && texids[5]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
-        glEnd();
-        if (have_texture && texids[5]) glDisable(GL_TEXTURE_2D);
-        
-        // Right face
-        if (have_texture && texids[3]) glBindTexture(GL_TEXTURE_2D, texids[3]);
-        glBegin(GL_QUADS);
-        glNormal3f(1.f, 0.f, 0.f);
-        if (have_texture && texids[3]) glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f, -0.5f);  // Bottom Right Of The Texture and Quad
-        if (have_texture && texids[3]) glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);  // Top Right Of The Texture and Quad
-        if (have_texture && texids[3]) glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.5f);  // Top Left Of The Texture and Quad
-        if (have_texture && texids[3]) glTexCoord2f(0.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.5f);  // Bottom Left Of The Texture and Quad
-        glEnd();
-        if (have_texture && texids[3]) glDisable(GL_TEXTURE_2D);
-        
-        // Left Face
-        if (have_texture && texids[2]) glBindTexture(GL_TEXTURE_2D, texids[2]);
-        glBegin(GL_QUADS);
-        glNormal3f(-1.f, 0.f, 0.f);
-        if (have_texture && texids[2]) glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);  // Bottom Left Of The Texture and Quad
-        if (have_texture && texids[2]) glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);  // Bottom Right Of The Texture and Quad
-        if (have_texture && texids[2]) glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.5f);  // Top Right Of The Texture and Quad
-        if (have_texture && texids[2]) glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f, -0.5f);  // Top Left Of The Texture and Quad
-        glEnd();
-        if (have_texture && texids[2]) glDisable(GL_TEXTURE_2D);
-        
-        glPopMatrix();
     }
     
     void createCylinder(datastruct::CylinderConfig config, datastruct::Position pos)

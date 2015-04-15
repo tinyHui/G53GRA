@@ -26,7 +26,10 @@ private:
     datastruct::Position* pos;
     
     TextureManager* texture_manager;
-    GLuint* floor_box;
+    GLuint* tile;
+    GLuint* wood;
+    GLuint* tv_wall_box;
+    GLuint* kitchen_box;
 
     datastruct::SquareConfig fw_config;
     datastruct::Position fw_pos;
@@ -40,14 +43,12 @@ private:
     datastruct::Position tw_pos;
     datastruct::SquareConfig mw_config;
     datastruct::Position mw_pos;
-    datastruct::SquareConfig tvw_sub_right_config;
-    datastruct::Position tvw_sub_right_pos;
+    datastruct::SquareConfig r_tvw_sub_config;
+    datastruct::Position r_tvw_sub_pos;
     datastruct::SquareConfig tvw_config;
     datastruct::Position tvw_pos;
-    datastruct::SquareConfig tvw_sub_left_config;
-    datastruct::Position tvw_sub_left_pos;
-    datastruct::SquareConfig tv_shelf_config;
-    datastruct::Position tv_shelf_pos;
+    datastruct::SquareConfig l_tvw_sub_config;
+    datastruct::Position l_tvw_sub_pos;
     datastruct::SquareConfig kit_big_config;
     datastruct::Position kit_big_pos;
     datastruct::SquareConfig kit_small_config;

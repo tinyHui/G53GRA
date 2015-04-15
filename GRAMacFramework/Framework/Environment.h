@@ -148,28 +148,28 @@ namespace lamp {
 
 namespace dog {
     using namespace datastruct;
-    constexpr float HEAD_WIDTH = 4;
-    constexpr float HEAD_HEIGHT = 3.4;
-    constexpr float HEAD_DEPTH = 3;
-    constexpr float EAR_WIDTH = 2;
-    constexpr float EAR_HEIGHT = 0.3;
-    constexpr float EAR_DEPTH = 1.3;
+    constexpr float HEAD_WIDTH = 7;
+    constexpr float HEAD_HEIGHT = 6.5;
+    constexpr float HEAD_DEPTH = 6;
+    constexpr float EAR_WIDTH = 3;
+    constexpr float EAR_HEIGHT = 0.5;
+    constexpr float EAR_DEPTH = 2;
     constexpr float EAR_GAP = 1.1;
-    constexpr float NOUSE_WIDTH = 0.9;
-    constexpr float NOUSE_HEIGHT = 0.7;
-    constexpr float NOUSE_DEPTH = 0.5;
-    constexpr float BODY_WIDTH = 3.5;
-    constexpr float BODY_HEIGHT = 2.5;
-    constexpr float BODY_DEPTH = 5.5;
-    constexpr float TAIL_WIDTH = 0.6;
-    constexpr float TAIL_HEIGHT = 0.4;
-    constexpr float TAIL_DEPTH = 1.3;
-    constexpr float TAIL_GAP = 0.8;
-    constexpr float LEG_WIDTH = 0.8;
-    constexpr float LEG_HEIGHT = 2.3;
-    constexpr float LEG_DEPTH = 0.9;
-    constexpr float LEG_EDGE_X_GAP = 0.3;
-    constexpr float LEG_EDGE_Z_GAP = 0.3;
+    constexpr float NOUSE_WIDTH = 2;
+    constexpr float NOUSE_HEIGHT = 1.5;
+    constexpr float NOUSE_DEPTH = 0.8;
+    constexpr float BODY_WIDTH = 6;
+    constexpr float BODY_HEIGHT = 5;
+    constexpr float BODY_DEPTH = 10;
+    constexpr float TAIL_WIDTH = 2.3;
+    constexpr float TAIL_HEIGHT = 1.5;
+    constexpr float TAIL_DEPTH = 2.3;
+    constexpr float TAIL_GAP = 1.2;
+    constexpr float LEG_WIDTH = 1.8;
+    constexpr float LEG_HEIGHT = 4.3;
+    constexpr float LEG_DEPTH = 2;
+    constexpr float LEG_EDGE_X_GAP = 0.5;
+    constexpr float LEG_EDGE_Z_GAP = 0.5;
     
     constexpr float LEG_RANGE = 30;
     constexpr float LEG_SPEED = 2;
@@ -177,9 +177,9 @@ namespace dog {
     constexpr float DUMP_RANGE = 0.3;
     constexpr float DUMP_SPEED = 0.04;
     
-    constexpr float WALK_OFFSET_LIM = 80;
-    constexpr float WALK_DIST_MIN = 5;
-    constexpr float WALK_DIST_MAX = 80;
+    constexpr float WALK_OFFSET_LIM = 20;
+    constexpr float WALK_DIST_MIN = 10;
+    constexpr float WALK_DIST_MAX = WALK_OFFSET_LIM;
     constexpr float WALK_SPEED = 0.3;
     
     constexpr float BODY_SPEED = 0.3;
