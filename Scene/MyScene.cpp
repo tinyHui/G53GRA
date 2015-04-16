@@ -16,8 +16,6 @@ For each object in your scene, #include its header file then add it to the scene
 #include "Clock.h"
 #include "Lamp.h"
 #include "Sun.h"
-#include "LampLight.h"
-#include "Outdoor.h"
 #include "Dog.h"
 
 using namespace datastruct;
@@ -40,159 +38,114 @@ void MyScene::Init()
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_CULL_FACE);
-    glEnable(GL_LIGHTING);
+    glDisable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_DEPTH_TEST);
     
     // living room
     SquareConfig* room_config = new SquareConfig();
-    room_config->width = 120;
-    room_config->depth = 180;
+    room_config->width = 140;
+    room_config->depth = 200;
     room_config->height = 100;
     Position* room_pos = new Position();
-    room_pos->x = 20;
+    room_pos->x = 0;
     room_pos->y = 0;
-    room_pos->z = 50;
+    room_pos->z = 0;
     Room* living_room = new Room(room_config, room_pos);
     AddObjectToScene(living_room);
+
+    // livingroom
+    carpet::Config* carpet_config = new carpet::Config();
+    carpet_config->width = 35;
+    carpet_config->depth = 32;
+    Position* carpet_pos = new Position();
+    carpet_pos->x = -20;
+    carpet_pos->z = -52;
+    Carpet* carpet = new Carpet(carpet_config, carpet_pos);
+    AddObjectToScene(carpet);
+    
+    Position* couch_main_pos = new Position();
+    couch_main_pos->x = carpet_pos->x;
+    couch_main_pos->z = carpet_pos->z - carpet_config->depth / 2 - carpet::CARPET_SOFA_GAP;
+    CouchMain* couch_main = new CouchMain(couch_main_pos);
+    AddObjectToScene(couch_main);
+
+    Position* l_couch_side_pos = new Position();
+    l_couch_side_pos->x = carpet_pos->x + carpet_config->width / 2 + carpet::CARPET_SOFA_GAP;
+    l_couch_side_pos->z = carpet_pos->z;
+    l_couch_side_pos->y_angle = -90;
+    CouchSide* couch_sidel = new CouchSide(l_couch_side_pos);
+    AddObjectToScene(couch_sidel);
+
+    Position* r_couch_side_pos = new Position();
+    r_couch_side_pos->x = carpet_pos->x - carpet_config->width / 2 - carpet::CARPET_SOFA_GAP;
+    r_couch_side_pos->z = carpet_pos->z;
+    r_couch_side_pos->y_angle = 90;
+    CouchSide* couch_sider = new CouchSide(r_couch_side_pos);
+    AddObjectToScene(couch_sider);
+
+    // kitchen
+    Position* table_pos = new Position();
+    table_pos->x = - room_config->width / 2 + room::KITCHEN_WIDTH / 2;
+    table_pos->y = room::KITCHEN_HEIGHT;
+    table_pos->z = room_config->depth / 2 - room::KITCHEN_DEPTH / 2;
+    table_pos->y_angle = 20;
+    Table* table = new Table(table_pos);
+    AddObjectToScene(table);
+    
+    Position* chair1_pos = new Position();
+    chair1_pos->x = table_pos->x + 11;
+    chair1_pos->y = table_pos->y;
+    chair1_pos->z = table_pos->z + 11;
+    chair1_pos->y_angle = -115;
+    Chair* chair1 = new Chair(chair1_pos);
+    AddObjectToScene(chair1);
+    
+    Position* chair2_pos = new Position();
+    chair2_pos->x = table_pos->x + 11;
+    chair2_pos->y = table_pos->y;
+    chair2_pos->z = table_pos->z - 11;
+    chair2_pos->y_angle = -45;
+    Chair* chair2 = new Chair(chair2_pos);
+    AddObjectToScene(chair2);
+    
+    Position* chair3_pos = new Position();
+    chair3_pos->x = table_pos->x - 11;
+    chair3_pos->y = table_pos->y;
+    chair3_pos->z = table_pos->z - 11;
+    chair3_pos->y_angle = 45;
+    Chair* chair3 = new Chair(chair3_pos);
+    AddObjectToScene(chair3);
+    
+    Position* chair4_pos = new Position();
+    chair4_pos->x = table_pos->x - 11;
+    chair4_pos->y = table_pos->y;
+    chair4_pos->z = table_pos->z + 11;
+    chair4_pos->y_angle = 115;
+    Chair* chair4 = new Chair(chair4_pos);
+    AddObjectToScene(chair4);
     
     Position* clock_pos = new Position();
     clock_pos->x = room_pos->x + room_config->width / 2 - time_clock::BASE_THICK - 1;
     clock_pos->y = room::KITCHEN_HEIGHT + 48;
     clock_pos->z = room_pos->z + room_config->depth / 2 - 30;
-    clock_pos->x_angel = 83;
-    clock_pos->y_angel = 90;
-    Clock* clock1 = new Clock(clock_pos);
-    AddObjectToScene(clock1);
-
-    Position* lamp1_pos = new Position();
-    lamp1_pos->x = -29;
-    lamp1_pos->z = -24;
-    lamp1_pos->y_angel = 45;
-    Lamp* lamp1 = new Lamp(lamp1_pos);
-    AddObjectToScene(lamp1);
+    clock_pos->x_angle = 5;
+    clock_pos->y_angle = -90;
+    Clock* clock = new Clock(clock_pos);
+    AddObjectToScene(clock);
     
-    Position* couch_main_pos = new Position();
-    couch_main_pos->x = 2;
-    couch_main_pos->z = -28;
-    CouchMain* couch_main = new CouchMain(couch_main_pos);
-    AddObjectToScene(couch_main);
+    Position* dog_pos = new Position();
+    dog_pos->x = -26;
+    dog_pos->z = -18;
+    Dog* dog = new Dog(dog_pos);
+    AddObjectToScene(dog);
     
-    Position* couch_sidel_pos = new Position();
-    couch_sidel_pos->x = 29;
-    couch_sidel_pos->z = -5;
-    couch_sidel_pos->y_angel = -90;
-    CouchSide* couch_sidel = new CouchSide(couch_sidel_pos);
-    AddObjectToScene(couch_sidel);
+    Position* lamp_pos = new Position();
+    lamp_pos->x = carpet_pos->x - carpet_config->width / 2 - carpet::CARPET_LAMP_GAP;
+    lamp_pos->z = carpet_pos->z - carpet_config->depth / 2 - carpet::CARPET_LAMP_GAP;
+    lamp_pos->y_angle = 45;
+    Lamp* lamp = new Lamp(lamp_pos);
+    AddObjectToScene(lamp);
     
-    Position* couch_sider_pos = new Position();
-    couch_sider_pos->x = -24;
-    couch_sider_pos->z = -5;
-    couch_sider_pos->y_angel = 90;
-    CouchSide* couch_sider = new CouchSide(couch_sider_pos);
-    AddObjectToScene(couch_sider);
-    
-    carpet::Config* carpet_config = new carpet::Config();
-    carpet_config->width = 35;
-    carpet_config->depth = 32;
-    Position* carpet_pos = new Position();
-    carpet_pos->x = 3;
-    carpet_pos->z = -2;
-    Carpet* carpet = new Carpet(carpet_config, carpet_pos);
-    AddObjectToScene(carpet);
-
-    // kitchen
-    Position* table_pos = new Position();
-    table_pos->x = room_pos->x - 20;
-    table_pos->y = room::KITCHEN_HEIGHT;
-    table_pos->z = room_pos->z - room::TV_WALL_Z + 30;
-    table_pos->y_angel = 20;
-    Table* table = new Table(table_pos);
-    AddObjectToScene(table);
-
-    Position* chair1_pos = new Position();
-    chair1_pos->x = table_pos->x - 20;
-    chair1_pos->y = table_pos->y;
-    chair1_pos->z = table_pos->z;
-    chair1_pos->y_angel = 90;
-    Chair* chair1 = new Chair(chair1_pos);
-    AddObjectToScene(chair1);
-    
-    Position* chair2_pos = new Position();
-    chair2_pos->x = table_pos->x + 20;
-    chair2_pos->y = table_pos->y;
-    chair2_pos->z = table_pos->z;
-    chair2_pos->y_angel = -90;
-    Chair* chair2 = new Chair(chair2_pos);
-    AddObjectToScene(chair2);
-    
-    Position* chair3_pos = new Position();
-    chair3_pos->x = table_pos->x;
-    chair3_pos->y = table_pos->y;
-    chair3_pos->z = table_pos->z - 20;
-    chair3_pos->y_angel = 0;
-    Chair* chair3 = new Chair(chair3_pos);
-    AddObjectToScene(chair3);
-    
-    Position* chair4_pos = new Position();
-    chair4_pos->x = table_pos->x;
-    chair4_pos->y = table_pos->y;
-    chair4_pos->z = table_pos->z + 20;
-    chair4_pos->y_angel = 180;
-    Chair* chair4 = new Chair(chair4_pos);
-    AddObjectToScene(chair4);
-    
-    Position* chair5_pos = new Position();
-    chair5_pos->x = table_pos->x + 14;
-    chair5_pos->y = table_pos->y;
-    chair5_pos->z = table_pos->z + 14;
-    chair5_pos->y_angel = -135;
-    Chair* chair5 = new Chair(chair5_pos);
-    AddObjectToScene(chair5);
-    
-    Position* chair6_pos = new Position();
-    chair6_pos->x = table_pos->x + 14;
-    chair6_pos->y = table_pos->y;
-    chair6_pos->z = table_pos->z - 14;
-    chair6_pos->y_angel = -45;
-    Chair* chair6 = new Chair(chair6_pos);
-    AddObjectToScene(chair6);
-    
-    Position* chair7_pos = new Position();
-    chair7_pos->x = table_pos->x - 14;
-    chair7_pos->y = table_pos->y;
-    chair7_pos->z = table_pos->z - 14;
-    chair7_pos->y_angel = 45;
-    Chair* chair7 = new Chair(chair7_pos);
-    AddObjectToScene(chair7);
-    
-    Position* chair8_pos = new Position();
-    chair8_pos->x = table_pos->x - 14;
-    chair8_pos->y = table_pos->y;
-    chair8_pos->z = table_pos->z + 14;
-    chair8_pos->y_angel = 135;
-    Chair* chair8 = new Chair(chair8_pos);
-    AddObjectToScene(chair8);
-    
-//    SquareConfig* outdoor_config = new SquareConfig();
-//    outdoor_config->width = room_config->width + dog::WALK_OFFSET_LIM * 3;
-//    outdoor_config->depth = room_config->depth + dog::WALK_OFFSET_LIM * 3;
-//    outdoor_config->height = room_config->height + 100;
-//    Position* outdoor_pos = new Position();
-//    outdoor_pos->x = room_pos->x;
-//    outdoor_pos->y = -0.01;
-//    outdoor_pos->z = room_pos->z - dog::WALK_OFFSET_LIM;
-//    Outdoor* outdoor = new Outdoor(outdoor_config, outdoor_pos);
-//    AddObjectToScene(outdoor);
-//    Position* dog_pos = new Position();
-//    dog_pos->x = room_pos->x;
-//    dog_pos->z = room_pos->z - room_config->depth / 2 - dog::WALK_OFFSET_LIM - 10;
-//    Dog* dog = new Dog(dog_pos);
-//    AddObjectToScene(dog);
-    
-    Sun* sun = new Sun();
-    AddObjectToScene(sun);
-
-    LampLight* lamp_light = new LampLight(lamp1_pos);
-    AddObjectToScene(lamp_light);
+    glEnable(GL_LIGHTING);
 }

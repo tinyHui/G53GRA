@@ -20,29 +20,19 @@ public:
     void HandleKey(int key, int state, int x, int y);
     
 private:
-    float width;
-    float depth;
-    float height;
     datastruct::Position* pos;
     
     TextureManager* texture_manager;
-    GLuint* tile;
+    GLuint* room_box;
+    GLuint* paint_box;
     GLuint* wood;
     GLuint* tv_wall_box;
     GLuint* kitchen_box;
 
-    datastruct::SquareConfig fw_config;
-    datastruct::Position fw_pos;
-    datastruct::SquareConfig lw_config;
-    datastruct::Position lw_pos;
-    datastruct::SquareConfig rw_config;
-    datastruct::Position rw_pos;
-    datastruct::SquareConfig bw_config;
-    datastruct::Position bw_pos;
-    datastruct::SquareConfig tw_config;
-    datastruct::Position tw_pos;
-    datastruct::SquareConfig mw_config;
-    datastruct::Position mw_pos;
+    datastruct::SquareConfig room_wall_config;
+    datastruct::Position room_wall_pos;
+    datastruct::SquareConfig paint_config;
+    datastruct::Position paint_pos;
     datastruct::SquareConfig r_tvw_sub_config;
     datastruct::Position r_tvw_sub_pos;
     datastruct::SquareConfig tvw_config;
@@ -55,4 +45,6 @@ private:
     datastruct::Position kit_small_pos;
     datastruct::SquareConfig stair_config;
     datastruct::Position stair_pos;
+    
+    float position[4], ambient[4], diffuse[4], specular[4];
 };

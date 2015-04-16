@@ -43,12 +43,16 @@ void Table::Draw()
     // Draw
     glPushMatrix();
     glTranslatef(pos->x, pos->y, pos->z);
-    glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
-    glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
-    glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
+    glRotatef(pos->z_angle, 0.f, 0.f, 1.f);
+    glRotatef(pos->y_angle, 0.f, 1.f, 0.f);
+    glRotatef(pos->x_angle, 1.f, 0.f, 0.f);
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glColor3f(1.f, 1.f, 1.f);
     createCylinder(face_config, face_pos);
+    glColor3f(.3f, .3f, .3f);
     createCylinder(leg_config, leg_pos);
     createSquare(bottom_config, bottom_pos);
+    glPopAttrib();
     glPopMatrix();
 }
 

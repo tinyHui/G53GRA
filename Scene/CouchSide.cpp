@@ -50,26 +50,28 @@ CouchSide::CouchSide(Position* pos) : pos(pos)
     back1_pos.x = sit1_pos.x;
     back1_pos.y = BACK_HEIGHT / 2;
     back1_pos.z = - (SIT_DEPTH / 2. + BACK_THICK / 2. + GAP);
+    back1_pos.x_angle = -5;
     back2_pos.x = sit2_pos.x;
     back2_pos.y = BACK_HEIGHT / 2;
     back2_pos.z = - (SIT_DEPTH / 2. + BACK_THICK / 2. + GAP);
+    back2_pos.x_angle = -5;
     
     // sofa side
     s_config.width = SIDE_THICK;
     s_config.height = SIDE_HEIGHT;
-    s_config.depth = sit_config.depth + back_config.depth / 2;
+    s_config.depth = SIDE_WIDTH;
     ls_pos.x = sit1_pos.x - (WIDTH + SIDE_THICK) / 2 - GAP;
     ls_pos.y = SIDE_HEIGHT / 2;
     ls_pos.z = - (BACK_THICK + GAP) / 2;
-    ls_pos.x_angel = 0;
-    ls_pos.y_angel = 0;
-    ls_pos.z_angel = 0;
+    ls_pos.x_angle = 0;
+    ls_pos.y_angle = 0;
+    ls_pos.z_angle = 0;
     rs_pos.x = sit2_pos.x + (WIDTH + SIDE_THICK) / 2 + GAP;
     rs_pos.y = SIDE_HEIGHT / 2;
     rs_pos.z = ls_pos.z;
-    rs_pos.x_angel = 0;
-    rs_pos.y_angel = 0;
-    rs_pos.z_angel = 0;
+    rs_pos.x_angle = 0;
+    rs_pos.y_angle = 0;
+    rs_pos.z_angle = 0;
 }
 
 void CouchSide::Draw()
@@ -83,9 +85,9 @@ void CouchSide::Draw()
     // Draw
     glPushMatrix();
     glTranslatef(pos->x, pos->y, pos->z);
-    glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
-    glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
-    glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
+    glRotatef(pos->z_angle, 0.f, 0.f, 1.f);
+    glRotatef(pos->y_angle, 0.f, 1.f, 0.f);
+    glRotatef(pos->x_angle, 1.f, 0.f, 0.f);
     
     glPushAttrib(GL_ALL_ATTRIB_BITS);
     glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);

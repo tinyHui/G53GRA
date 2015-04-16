@@ -29,7 +29,7 @@ Chair::Chair(Position* pos) : pos(pos)
     back_pos.y = sit_pos.y + BACK_HEIGHT / 2;
     back_pos.z = - SIT_DEPTH / 2 + SIT_THICK / 2.;
     back_pos.y_piv = - BACK_HEIGHT / 2;
-    back_pos.x_angel = -10.;
+    back_pos.x_angle = -10.;
     
     // leg
     leg_config.width = LEG_THICK;
@@ -61,15 +61,19 @@ void Chair::Draw()
     // Draw
     glPushMatrix();
     glTranslatef(pos->x, pos->y, pos->z);
-    glRotatef(pos->z_angel, 0.f, 0.f, 1.f);
-    glRotatef(pos->y_angel, 0.f, 1.f, 0.f);
-    glRotatef(pos->x_angel, 1.f, 0.f, 0.f);
-    createSquare(sit_config, sit_pos);
+    glRotatef(pos->z_angle, 0.f, 0.f, 1.f);
+    glRotatef(pos->y_angle, 0.f, 1.f, 0.f);
+    glRotatef(pos->x_angle, 1.f, 0.f, 0.f);
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glColor3f(1.f, .6588f, .6844f);
     createSquare(back_config, back_pos);
+    createSquare(sit_config, sit_pos);
+    glColor3f(.3f, .3f, .3f);
     createSquare(leg_config, lt_leg_pos);
     createSquare(leg_config, rt_leg_pos);
     createSquare(leg_config, lb_leg_pos);
     createSquare(leg_config, rb_leg_pos);
+    glPopAttrib();
     glPopMatrix();
 }
 

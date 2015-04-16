@@ -28,5 +28,7 @@ private:
     datastruct::Position leg_pos;
     datastruct::SquareConfig light_config;
     datastruct::Position light_pos;
+    
+    float position[4], ambient[4], diffuse[4], specular[4];
 };
 

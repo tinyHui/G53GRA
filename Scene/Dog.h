@@ -21,15 +21,14 @@ public:
     void HandleKey(int key, int state, int x, int y);
     
 private:
+    float r;
+    float angle;
+    
     float x_start;
     float z_start;
-
-    bool walk_end;
-    float walk_range;
-    float walk_direction;
     
-    int dump_stage;
-    float dump_start;
+    int bump_stage;
+    float bump_start;
     
     int leg_stage;
     float leg_current_target;
@@ -37,10 +36,7 @@ private:
     datastruct::Position* pos;
     TextureManager* texture_manager;
     GLuint* head_box;
-    GLuint* ear_box;
-    GLuint* nouse_box;
-    GLuint* body_box;
-    GLuint* tail_box;
+    GLuint* brown_box;
     GLuint* leg_box;
     
     datastruct::SquareConfig head_config;
