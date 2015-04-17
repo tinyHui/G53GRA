@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 NottinghamUniversity. All rights reserved.
 //
 
+#include "TextureManager.h"
 #include "Environment.h"
 #include "Object.h"
 
@@ -21,14 +22,11 @@ public:
     
 private:
     datastruct::Position* pos;
-
-    datastruct::SquareConfig bottom_config;
+    datastruct::CuboidConfig bottom_config;
     datastruct::Position bottom_pos;
     datastruct::CylinderConfig leg_config;
     datastruct::Position leg_pos;
-    datastruct::SquareConfig light_config;
-    datastruct::Position light_pos;
-    
-    float position[4], ambient[4], diffuse[4], specular[4];
+    datastruct::CuboidConfig shade_config;
+    datastruct::Position shade_pos;
 };
 

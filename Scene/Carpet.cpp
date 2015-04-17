@@ -11,7 +11,7 @@
 
 using namespace carpet;
 
-Carpet::Carpet(Config* config, Position* pos) : config(config), pos(pos)
+Carpet::Carpet(Position* pos) : pos(pos)
 {
     texture_manager = new TextureManager();
     carpet_box = new GLuint[6];
@@ -19,9 +19,9 @@ Carpet::Carpet(Config* config, Position* pos) : config(config), pos(pos)
     carpet_box[5] = carpet_box[4];
 
     // carpet body
-    carpet_config.width = config->width;
+    carpet_config.width = WIDTH;
     carpet_config.height = THICK;
-    carpet_config.depth = config->depth;
+    carpet_config.depth = DEPTH;
     carpet_pos.x = 0;
     carpet_pos.y = THICK / 2;
     carpet_pos.z = 0;
@@ -46,7 +46,7 @@ void Carpet::Draw()
     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
-    createSquare(carpet_config, carpet_pos, carpet_box);
+    createCuboid(carpet_config, carpet_pos, carpet_box);
     glPopAttrib();
 
     glPopMatrix();

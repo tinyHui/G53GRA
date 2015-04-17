@@ -39,18 +39,18 @@ private:
     GLuint* brown_box;
     GLuint* leg_box;
     
-    datastruct::SquareConfig head_config;
+    datastruct::CuboidConfig head_config;
     datastruct::Position head_pos;
-    datastruct::SquareConfig ear_config;
+    datastruct::CuboidConfig ear_config;
     datastruct::Position l_ear_pos;
     datastruct::Position r_ear_pos;
-    datastruct::SquareConfig nouse_config;
+    datastruct::CuboidConfig nouse_config;
     datastruct::Position nouse_pos;
-    datastruct::SquareConfig body_config;
+    datastruct::CuboidConfig body_config;
     datastruct::Position body_pos;
-    datastruct::SquareConfig tail_config;
+    datastruct::CuboidConfig tail_config;
     datastruct::Position tail_pos;
-    datastruct::SquareConfig leg_config;
+    datastruct::CuboidConfig leg_config;
     datastruct::Position lt_leg_pos;
     datastruct::Position rt_leg_pos;
     datastruct::Position lb_leg_pos;

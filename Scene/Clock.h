@@ -28,15 +28,15 @@ private:
     GLuint* clock_box;
     
     datastruct::Position* pos;
-    datastruct::SquareConfig leg_config;
+    datastruct::CuboidConfig leg_config;
     datastruct::Position leg_pos;
-    datastruct::SquareConfig cb_config;
+    datastruct::CuboidConfig cb_config;
     datastruct::Position cb_pos;
     
-    datastruct::SquareConfig h_hand_config;
+    datastruct::CuboidConfig h_hand_config;
     datastruct::Position h_hand_pos;
-    datastruct::SquareConfig m_hand_config;
+    datastruct::CuboidConfig m_hand_config;
     datastruct::Position m_hand_pos;
-    datastruct::SquareConfig s_hand_config;
+    datastruct::CuboidConfig s_hand_config;
     datastruct::Position s_hand_pos;
 };

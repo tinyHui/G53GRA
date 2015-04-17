@@ -94,12 +94,12 @@ void CouchSide::Draw()
     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
-    createSquare(sit_config, sit1_pos, leather_box);
-    createSquare(sit_config, sit2_pos, leather_box);
-    createSquare(back_config, back1_pos, leather_box);
-    createSquare(back_config, back2_pos, leather_box);
-    createSquare(s_config, ls_pos, wood_box);
-    createSquare(s_config, rs_pos, wood_box);
+    createCuboid(sit_config, sit1_pos, leather_box);
+    createCuboid(sit_config, sit2_pos, leather_box);
+    createCuboid(back_config, back1_pos, leather_box);
+    createCuboid(back_config, back2_pos, leather_box);
+    createCuboid(s_config, ls_pos, wood_box);
+    createCuboid(s_config, rs_pos, wood_box);
     glPopAttrib();
     
     glPopMatrix();

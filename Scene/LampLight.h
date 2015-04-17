@@ -21,5 +21,5 @@ public:
     void Update( const double& deltatime );
 
 private:
-    datastruct::Position* lamp_pos;
+    GLfloat light_position[4];
 };

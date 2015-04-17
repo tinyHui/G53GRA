@@ -22,7 +22,7 @@ public:
 private:
     datastruct::Position* pos;
 
-    datastruct::SquareConfig bottom_config;
+    datastruct::CuboidConfig bottom_config;
     datastruct::Position bottom_pos;
     datastruct::CylinderConfig leg_config;
     datastruct::Position leg_pos;

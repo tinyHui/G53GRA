@@ -68,13 +68,12 @@ void Clock::Draw()
     glRotatef(pos->z_angle, 0.f, 0.f, 1.f);
     glRotatef(pos->y_angle, 0.f, 1.f, 0.f);
     glRotatef(pos->x_angle, 1.f, 0.f, 0.f);
-    createSquare(cb_config, cb_pos, clock_box);
-    glPushAttrib(GL_ALL_ATTRIB_BITS);
-    glColor3f(0.f, 0.f, 0.f);
-    createSquare(h_hand_config, h_hand_pos);
-    createSquare(m_hand_config, m_hand_pos);
-    createSquare(s_hand_config, s_hand_pos);
-    glPopAttrib();
+//    glColor3f(1.f, 1.f, 1.f);
+    createCuboid(cb_config, cb_pos, clock_box);
+//    glColor3f(0.f, 0.f, 0.f);
+    createCuboid(h_hand_config, h_hand_pos);
+    createCuboid(m_hand_config, m_hand_pos);
+    createCuboid(s_hand_config, s_hand_pos);
     glPopMatrix();
 }
 

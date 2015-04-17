@@ -37,7 +37,7 @@ public:
     // Called every time the mouse moves, x and y are the mouse position.
     virtual void HandlePassiveMouseMotion( int x, int y ){}
     
-    void createSquare(datastruct::SquareConfig config, datastruct::Position pos, GLuint* texids=nullptr, bool inverse=false)
+    void createCuboid(datastruct::CuboidConfig config, datastruct::Position pos, GLuint* texids=nullptr, bool inverse=false)
     {
         using namespace datastruct;
         

@@ -13,7 +13,7 @@
 class Carpet : public Object
 {
 public:
-    Carpet(carpet::Config* config, datastruct::Position* pos);
+    Carpet(datastruct::Position* pos);
     ~Carpet(){};
     
     void Draw();
@@ -21,11 +21,10 @@ public:
     void HandleKey(int key, int state, int x, int y);
     
 private:
-    carpet::Config* config;
     datastruct::Position* pos;
     TextureManager* texture_manager;
     GLuint* carpet_box;
 
-    datastruct::SquareConfig carpet_config;
+    datastruct::CuboidConfig carpet_config;
     datastruct::Position carpet_pos;
 };

@@ -12,7 +12,7 @@
 class Room : public Object
 {
 public:
-    Room(datastruct::SquareConfig* config, datastruct::Position* pos);
+    Room(datastruct::CuboidConfig* config, datastruct::Position* pos);
     ~Room(){};
     
     void Draw();
@@ -27,24 +27,22 @@ private:
     GLuint* paint_box;
     GLuint* wood;
     GLuint* tv_wall_box;
-    GLuint* kitchen_box;
+    GLuint* dining_hall_box;
 
-    datastruct::SquareConfig room_wall_config;
+    datastruct::CuboidConfig room_wall_config;
     datastruct::Position room_wall_pos;
-    datastruct::SquareConfig paint_config;
+    datastruct::CuboidConfig paint_config;
     datastruct::Position paint_pos;
-    datastruct::SquareConfig r_tvw_sub_config;
+    datastruct::CuboidConfig r_tvw_sub_config;
     datastruct::Position r_tvw_sub_pos;
-    datastruct::SquareConfig tvw_config;
+    datastruct::CuboidConfig tvw_config;
     datastruct::Position tvw_pos;
-    datastruct::SquareConfig l_tvw_sub_config;
+    datastruct::CuboidConfig l_tvw_sub_config;
     datastruct::Position l_tvw_sub_pos;
-    datastruct::SquareConfig kit_big_config;
-    datastruct::Position kit_big_pos;
-    datastruct::SquareConfig kit_small_config;
-    datastruct::Position kit_small_pos;
-    datastruct::SquareConfig stair_config;
+    datastruct::CuboidConfig DHALL_big_config;
+    datastruct::Position DHALL_big_pos;
+    datastruct::CuboidConfig DHALL_small_config;
+    datastruct::Position DHALL_small_pos;
+    datastruct::CuboidConfig stair_config;
     datastruct::Position stair_pos;
-    
-    float position[4], ambient[4], diffuse[4], specular[4];
 };

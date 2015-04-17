@@ -23,14 +23,13 @@ Dog::Dog(Position* pos)
     r = 8;
     angle = 0;
     pos->y_angle = 90;
-    
+    pos->y = 3 * BUMP_SPEED;
     
     x_start = pos->x;
     z_start = pos->z;
+    bump_start = pos->y;
     
     bump_stage = 0;
-    pos->y += BUMP_RANGE;
-    bump_start = pos->y;
     
     leg_stage = 0;
     leg_current_target = LEG_RANGE;
@@ -142,15 +141,6 @@ Dog::Dog(Position* pos)
 
 void Dog::Draw()
 {
-//    SquareConfig a;
-//    a.width = width_range;
-//    a.height = 10;
-//    a.depth = depth_range;
-//    Position b;
-//    b.x = 0;
-//    b.y = 0;
-//    b.z = 0;
-    
     // Draw
     glPushMatrix();
     glTranslatef(pos->x, pos->y, pos->z);
@@ -162,28 +152,21 @@ void Dog::Draw()
     l_ear_pos.x_angle = head_pos.x_angle;
     r_ear_pos.x_angle = head_pos.x_angle;
     
-//    glPushAttrib(GL_ALL_ATTRIB_BITS);
-//    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-//    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-//    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-//    glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
-    createSquare(head_config, head_pos, head_box);
-    createSquare(ear_config, l_ear_pos, brown_box);
-    createSquare(ear_config, r_ear_pos, brown_box);
-    glPushAttrib(GL_ALL_ATTRIB_BITS);
+//    glColor3f(1, 1, 1);
+    createCuboid(head_config, head_pos, head_box);
+    createCuboid(ear_config, l_ear_pos, brown_box);
+    createCuboid(ear_config, r_ear_pos, brown_box);
+    createCuboid(body_config, body_pos, brown_box);
+    createCuboid(tail_config, tail_pos, brown_box);
+    createCuboid(leg_config, lt_leg_pos, leg_box);
+    createCuboid(leg_config, rt_leg_pos, leg_box);
+    createCuboid(leg_config, lb_leg_pos, leg_box);
+    createCuboid(leg_config, rb_leg_pos, leg_box);
+    glPushAttrib(GL_CURRENT_COLOR);
     glColor3f(0.f, 0.f, 0.f);
-    createSquare(nouse_config, nouse_pos);
+    createCuboid(nouse_config, nouse_pos);
+    glColor3f(1.f, 1.f, 1.f);
     glPopAttrib();
-    createSquare(body_config, body_pos, brown_box);
-    createSquare(tail_config, tail_pos, brown_box);
-    createSquare(leg_config, lt_leg_pos, leg_box);
-    createSquare(leg_config, rt_leg_pos, leg_box);
-    createSquare(leg_config, lb_leg_pos, leg_box);
-    createSquare(leg_config, rb_leg_pos, leg_box);
-    
-//    createSquare(a, b);
-    
-//    glPopAttrib();
     
     glPopMatrix();
 }
@@ -199,14 +182,14 @@ void Dog::Update( const double& deltaTime )
     
     switch (bump_stage) {
         case 0:
-            pos->x_angle += BODY_SPEED;
+            pos->x_angle += BODY_WAVE_ANGLE;
             l_ear_pos.z_angle += EAR_SPEED;
             r_ear_pos.z_angle -= EAR_SPEED;
             tail_pos.y_angle += TAIL_SPEED;
             pos->y += BUMP_SPEED;
             break;
         case 1:
-            pos->x_angle -= BODY_SPEED;
+            pos->x_angle -= BODY_WAVE_ANGLE;
             l_ear_pos.z_angle -= EAR_SPEED;
             r_ear_pos.z_angle += EAR_SPEED;
             tail_pos.y_angle -= TAIL_SPEED;
@@ -251,10 +234,20 @@ void Dog::Update( const double& deltaTime )
     pos->x = x_start + r * sin(angle*M_PI/180);
     pos->z = z_start + r * cos(angle*M_PI/180);
     
-    angle += 5 + float(rand()) / float(RAND_MAX) * 0.5 * (float(rand()) / float(RAND_MAX) > 0.5 ? -1 : 1);
-    x_start += float(rand()) / float(RAND_MAX) * 0.15 * (float(rand()) / float(RAND_MAX) > 0.5 ? -1 : 1);
-    z_start += float(rand()) / float(RAND_MAX) * 0.1 * (float(rand()) / float(RAND_MAX) > 0.5 ? -1 : 1);
+    float angle_change = 3 + float(rand()) / float(RAND_MAX) * 0.3 * (float(rand()) / float(RAND_MAX) > 0.3 ? -1 : 1);
+    if (angle_change > 4) {
+        angle_change = 4;
+    } else if (angle_change < 2) {
+        angle_change = 2;
+    }
+    angle += angle_change;
+    
     r += float(rand()) / float(RAND_MAX) * 0.2 * (float(rand()) / float(RAND_MAX) > 0.5 ? -1 : 1);
+    if (r > 15) {
+        r = 15;
+    } else if (r < 10) {
+        r = 10;
+    }
 }
 
 void Dog::HandleKey(int key, int state, int x, int y)

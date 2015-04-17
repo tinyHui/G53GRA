@@ -10,11 +10,6 @@
 
 namespace datastruct {
     // basic struct
-    struct Env {
-        int width;
-        int depth;
-    };
-    
     struct Position {
         float x = 0;
         float y = 0;
@@ -27,7 +22,7 @@ namespace datastruct {
         float z_angle = 0;
     };
     
-    struct SquareConfig {
+    struct CuboidConfig {
         float width;
         float height;
         float depth;
@@ -54,6 +49,8 @@ namespace camera {
     };
 //    constexpr Config CAMERA = { 0.f, 80.f, 0.f, 90.f, 0.f, 0.f, 0.3f, 500.f };
     constexpr Config CAMERA = { 55.f, 18.f, -80.f, 1.f, 500.f };
+    constexpr float UP =  0.3;
+    constexpr float RIGHT =  2.3;
 }
 
 namespace sofa {
@@ -72,11 +69,11 @@ namespace sofa {
 
 namespace carpet {
     using namespace datastruct;
-    struct Config {
-        float width;
-        float depth;
-    };
+    constexpr float X = -20;
+    constexpr float Z = -52;
+    constexpr float WIDTH = 35;
     constexpr float THICK = 0.2;
+    constexpr float DEPTH = 32;
     constexpr float CARPET_SOFA_GAP = 14;
     constexpr float CARPET_LAMP_GAP = 15;
 }
@@ -94,6 +91,7 @@ namespace table {
 
 namespace chair {
     using namespace datastruct;
+    constexpr float R = 11;
     constexpr float WIDTH = 8;
     constexpr float SIT_THICK = 0.5;
     constexpr float SIT_DEPTH = 9;
@@ -106,6 +104,10 @@ namespace chair {
 
 namespace room {
     using namespace datastruct;
+    constexpr float WIDTH = 140;
+    constexpr float HEIGHT = 100;
+    constexpr float DEPTH = 200;
+    
     constexpr float TV_WALL_WIDTH = 40;
     constexpr float TV_WALL_THICK = 3;
     constexpr float TV_WALL_HEIGHT = 50;
@@ -113,12 +115,12 @@ namespace room {
     constexpr float TV_WALL_LEFT_THICK = 1;
     constexpr float TV_WALL_RIGHT_WIDTH = 18;
     constexpr float TV_WALL_RIGHT_THICK = 1;
-    constexpr float KITCHEN_HEIGHT = 35;
-    constexpr float KITCHEN_DEPTH = 85;
-    constexpr float KITCHEN_WIDTH = TV_WALL_WIDTH + TV_WALL_LEFT_WIDTH + TV_WALL_RIGHT_WIDTH;
+    constexpr float DHALL_HEIGHT = 35;
+    constexpr float DHALL_DEPTH = 85;
+    constexpr float DHALL_WIDTH = TV_WALL_WIDTH + TV_WALL_LEFT_WIDTH + TV_WALL_RIGHT_WIDTH;
     constexpr float STAIR_DEPTH = 6;
     constexpr int STAIR_LEVEL = 10;
-    constexpr float STAIR_THICK = KITCHEN_HEIGHT / STAIR_LEVEL;
+    constexpr float STAIR_THICK = DHALL_HEIGHT / STAIR_LEVEL;
 }
 
 namespace time_clock {
@@ -149,6 +151,10 @@ namespace lamp {
 
 namespace dog {
     using namespace datastruct;
+    constexpr float X = -26;
+    constexpr float Y = 0;
+    constexpr float Z = -18;
+    
     constexpr float HEAD_WIDTH = 3.5;
     constexpr float HEAD_HEIGHT = 3.3;
     constexpr float HEAD_DEPTH = 3;
@@ -181,8 +187,9 @@ namespace dog {
     constexpr float WALK_DIST_MIN = 10;
     constexpr float WALK_SPEED = 0.3;
     
-    constexpr float BODY_SPEED = 0.1;
-    constexpr float EAR_SPEED = 3;
+    constexpr float EAR_SPEED = 15;
     constexpr float HEAD_SPEED = 0.5;
-    constexpr float TAIL_SPEED = 5;
+    constexpr float TAIL_SPEED = 10;
+    
+    constexpr float BODY_WAVE_ANGLE = 3;
 }

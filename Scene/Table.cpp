@@ -40,20 +40,43 @@ Table::Table(Position* pos) : pos(pos)
 
 void Table::Draw()
 {
+    GLfloat face_ambient[] = { 1.f, 1.f, 1.f, 1.f };     // Define the ambient material colour property K_a
+    GLfloat face_diffuse[] = { 1.f, 1.f, 1.f, 1.f };     // Define the diffuse material colour property K_d
+    GLfloat face_specular[] = { .2f, .2f, .2f, 1.f };    // Define the specular material colour property K_s
+    GLfloat face_shininess[] = { 0. };
+    
+    GLfloat leg_ambient[] = { 0.3f, 0.3f, 0.3f, 1.f };     // Define the ambient material colour property K_a
+    GLfloat leg_diffuse[] = { 0.3f, 0.3f, 0.3f, 1.f };     // Define the diffuse material colour property K_d
+    GLfloat leg_specular[] = { .2f, .2f, .2f, 1.f };    // Define the specular material colour property K_s
+    GLfloat leg_shininess[] = { 0. };
+    
+    glDisable(GL_COLOR_MATERIAL);
     // Draw
     glPushMatrix();
     glTranslatef(pos->x, pos->y, pos->z);
     glRotatef(pos->z_angle, 0.f, 0.f, 1.f);
     glRotatef(pos->y_angle, 0.f, 1.f, 0.f);
     glRotatef(pos->x_angle, 1.f, 0.f, 0.f);
-    glPushAttrib(GL_ALL_ATTRIB_BITS);
-    glColor3f(1.f, 1.f, 1.f);
+    
+    glPushAttrib(GL_LIGHTING);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, face_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, face_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, face_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, face_shininess);
     createCylinder(face_config, face_pos);
-    glColor3f(.3f, .3f, .3f);
-    createCylinder(leg_config, leg_pos);
-    createSquare(bottom_config, bottom_pos);
     glPopAttrib();
+    
+    glPushAttrib(GL_LIGHTING);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, leg_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, leg_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, leg_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, leg_shininess);
+    createCylinder(leg_config, leg_pos);
+    createCuboid(bottom_config, bottom_pos);
+    glPopAttrib();
+    
     glPopMatrix();
+    glEnable(GL_COLOR_MATERIAL);
 }
 
 void Table::Update( const double& deltaTime )

@@ -18,19 +18,20 @@ Sun::Sun()
 
 void Sun::Draw()
 {
-    float ambient[]  = { .1f, .1f, .1f, 0.1f };
-    float diffuse[]  = { 0.1f, 0.1f, 0.1f, 0.1f };
-    float specular[] = { 0.01f, 0.01f, 0.01f, 0.01f };
-    float position[] = { 300, 300, 500, 0.f };
-    
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);      // set ambient parameter of light source
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);      // set diffuse parameter of light source
-    glLightfv(GL_LIGHT0, GL_SPECULAR, specular);    // set specular parameter of light source
-    glLightfv(GL_LIGHT0, GL_POSITION, position);    // set direction vector of light source
-    glEnable(GL_LIGHT0);
 }
 
 
 void Sun::Update( const double& deltatime )
 {
+    // light
+    GLfloat light_ambient[] = { .3f, .3f, .3f, .3f };
+    GLfloat light_diffuse[] = { .3f, .3f, .3f, .3f };
+    GLfloat light_specular[] = { 1.f, 1.f, 1.f, 1.f };
+    GLfloat light_position[] = { 0, 0, 0, 0 };
+
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);      // set ambient parameter of light source
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);      // set diffuse parameter of light source
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);    // set specular parameter of light source
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);    // set direction vector of light source
+    glEnable(GL_LIGHT0);
 }

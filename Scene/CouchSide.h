@@ -26,13 +26,13 @@ private:
     GLuint* leather_box;
     GLuint* wood_box;
 
-    datastruct::SquareConfig sit_config;
+    datastruct::CuboidConfig sit_config;
     datastruct::Position sit1_pos;
     datastruct::Position sit2_pos;
-    datastruct::SquareConfig back_config;
+    datastruct::CuboidConfig back_config;
     datastruct::Position back1_pos;
     datastruct::Position back2_pos;
-    datastruct::SquareConfig s_config;
+    datastruct::CuboidConfig s_config;
     datastruct::Position ls_pos;
     datastruct::Position rs_pos;
 };
